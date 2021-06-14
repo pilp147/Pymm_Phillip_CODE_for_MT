@@ -1,0 +1,1204 @@
+---
+title: "Wage Decoupling and the Skills Mismatch"
+author: "Phillip Wolfgang Pymm<br><br> Supervised by Prof. Anke Hassel,<br>Professor of Public Policy <br><br>Master Thesis <br> Hertie School"
+date: "Berlin, June 14, 2021"
+output:
+   html_document:
+    keep_tex: yes
+    toc: true
+    toc_float: true
+    number_sections: true
+    smooth_scroll: true
+    collapsed: false
+    toc_depth: 4
+    theme: "journal"
+    highlight: "tango"
+    code_folding: show
+---
+
+<style>
+th, td {
+    padding-left: 40px;
+    text-align: left;
+  }
+</style>
+
+***
+
+```{r setup, include=TRUE}
+library("knitr") # need to add this, otherwise opts_chunk cannot be read
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      Tidy=TRUE)
+opts_chunk$set(tidy=T)
+opts_chunk$set(fig.path='figs/', cache.path='cache/graphics-',
+         fig.align='center', fig.width = 9, fig.height = 7, fig.show = 'hold',
+         cache = TRUE, par = TRUE)
+```
+
+```{r Set up 2, include=TRUE}
+library(stringr)  # for editing strings
+library(foreign) # for loading foreign Data
+library(tidyverse) # to keep things nice and tidy
+library(dplyr) # for data wrangling
+library(kableExtra) # for nice tables
+```
+
+## Acknowledgements
+I would like to express a special thanks to my thesis supervisor Prof. Anke Hassel who showed great patience and professionalism, providing me with much-needed guidance to re-tool my thesis when my original plans had failed. The extra sessions to guide me in the retooling of my thesis I am especially grateful. Furthermore, I must thank my dear friends Golo Rademacher and Anton Höglin who with late night philosophical and academic discussions aided me in grounding the scope of my thesis and helped me the darkest times giving me the much-needed confidence and guidance to write my thesis. 
+
+## Executive Summary
+Traditional economic wisdom holds that labour markets are always seeking equilibrium between wages and productivity. However, since the 1980s, in much of the developed world, wage decoupling has established itself. That is, wages have relatively stagnated while productivity has continued to rise. Simultaneously, due to the fourth industrial revolution, knowledge economies are witnessing a skills shortage, especially in STEM skills. Meanwhile, there is a substantial surplus of skills related to humanities disciplines and their associated cognitive skills (humanities skills). Both phenomena are linked to the equality/distributional concerns of the fourth industrial revolution as they are both connected to the technology-related transformations in labour markets. The paper’s objective is to demonstrate that the phenomena are interlinked and provide a neo-institutional analysis of countries to demonstrate how different institutional contexts mitigate or exacerbate the phenomena. 
+
+This paper asks whether this skills shortage contributes to the growing wage decoupling in the developed world. More concretely, are people learning the wrong skills, leading to an over-abundance of workers with humanities skills and a lack of STEM skills? The economic argument is that the surplus of humanities skills is depressing wages for labourers within the dynamic services sector by overcrowding it while the jobs requiring STEM-skills go unfilled and their wages uncaptured in the data. 
+
+The quantitative analysis demonstrates that increases in labour demand for STEM-skills is positively correlated with wage decoupling. The qualitative analysis indicates that we can link differences in wage decoupling rates to differences in institutional contexts, notably with relation to labour market dualization, their variety of knowledge economy, and their welfare regime. To combat wage decoupling and the skills mismatch, governments need to ensure their labour market institutions are conducive to flexibility, providing workers avenues to acquire new skills to advance their careers in fields that are in demand.
+
+#  Introduction
+##  Wage Decoupling
+For several decades, the developed world has been grappling with the phenomenon of wage decoupling, understood as the phenomenon where the real growth of median wages lags significantly behind real labour productivity growth. For example, the OECD’s 2018 Economic Outlook report calculates that from 1995-2013 across 24 OECD countries, labour productivity has had an annual average growth of 1.58%, while real median wage growth has had an average annual real growth of 0.84%. This is particularly worrying because in most countries, until roughly 1980, wages grew in tandem with labour productivity (Skare & Skare, 2017). This has implications for wage inequalities as the growing productivity of workers goes unpaid.
+
+The origins of wage decoupling coincide with the effects of the third industrial revolution, also known as the digital or computer revolution, from the late 1960s to the ‘90s. According to Klaus Schwab (2016), founder and executive chairman of the World Economic Forum, this industrial revolution was categorized by new productivity growing technologies such as semiconductors, mainframe computers, personal computers, and the internet. These technologies made workplaces across all industries less labour-intensive, destroyed some jobs, but new jobs were borne (Ford, 2015). Now futurist scholars – that is, scholars who explore predictions and possibilities about the future and how they can emerge from the present – look at the new technologies of the fourth industrial revolution. These scholars have grown anxious for what new technologies hold for the growth of inequality in our immediate future (*Ibid.* p. xviii; Schwab, 2016).
+
+Regarding the persistence of wage decoupling, growing inequality and the role of technologies, Martin Ford states that “the fruits of innovation throughout the economy are now accruing almost entirely to business owners and investors, rather than workers” (Ford, 2015, p. 35). Ford’s futurist colleagues, Brynjolfsson & McAfee, conclude, “The first two winners are those who have invested and accumulated significant quantities of capital, such as equipment, structures, intellectual property, or financial assets” (Brynjolfsson & McAfee, 2014, p. 133). For futurists, the belief is that technology is what is driving wage decoupling and economic inequality.
+
+##  Skills Mismatch
+Another phenomenon we witness is the (metaphorical) race between education and technology, which education is losing. Historically new technologies have been implemented in modes of production and transformed the shape of labour markets creating new skill demands. From a functionalist perspective, governments, societies, and educational institutions have adapted to meet these demands (Goldin & Katz, 2008; Acemoglu & Autor, 2012; Acemoglu & Restrepo, 2018). The fourth industrial revolution, however, is challenging this balance. According to Klaus Schwab, the Fourth Industrial Revolution is marked by a confluence of innovations in fields such as “artificial intelligence, robotics, the internet of things, autonomous vehicles, 3D printing, nanotechnology, biotechnology, materials science, energy storage and quantum computing to name a few” (Schwab, 2016, p. 1). These innovations are the catalysts behind the profound shifts we see “across all industries marked by the emergence of new business models, the disruption of incumbents and the reshaping of production, consumption, transportation and delivery systems” (*Ibid.* p. 1f). Industrial revolutions are marked by shifts in technology that change and improve business models, create new business models while transforming social structures.
+
+The fourth industrial revolution has proved a destabilizing force for the labour market, creating skill demands the market cannot match for now. This structural transformation is not beyond those whose livelihoods it impacts most: the workers. Thomas Haipeter (2019), in a study of the trade union-led project “*Arbeit 2020*” – a project whose goal was to find ways to support workers councils, unions, and employers with the challenges of a digitizing workplace – analyzed the negotiated future agreements adopted by a portion of the seventy North-Rhine Westphalia companies and their unions. He had determined that the second most mentioned aspect in the preambles of these future agreements was the promotion of skills, while the most mentioned field of action and topic in these future agreements was skills and further training (Haipeter, 2019). While not representative, it is telling and demonstrates that new technologies require workers to acquire new skills.
+
+the skills that are in demand? In a global context, despite explosive growth in education and acquisition of high skills (Brynjolfsson & McAfee, 2015), job vacancies persist, and there is a growing trend of recent college and university graduates who have begun to perform lower-skilled jobs (Beaudry, Green, & Sand, 2013), creating a jobs gap. This gap refers to “the gap that often exists between the types of jobs that people want and the types of jobs that are available” (Banerjee *et al.* 2016, 2). A more granular analysis shows that there has been a persistent and omnipresent lack of software skills and a persistent skills-shortage in skills that are “technical in nature (*i.e.* STEM) or require personal intervention (*e.g.* healthcare-related)” (McGrath, 2020, p. 6). On the other hand, there is a surplus of skills that “concern general or routine tasks or profiles (*e.g.* clerical), or unskilled work (i.e. elementary occupations) or are based on expertise in a branch of the humanities (journalists, sociologists etc.)” (*Ibid.*).
+
+Skills are defined as specific, learned abilities needed to carry out the tasks and duties of a given job (ILO, 2014). Skills are learned and utilized for specific contexts, however. Vandeplas & Thum-Thysen (2020) calculate high skills as skills achieved through tertiary education. This paper exploits this methodology by subdividing high skills into two distinct categories: STEM and humanities skills. Skills that are technical, such as ICT skills and statistics; or science-based, such as healthcare, will be referred to as STEM-skills, while skills based on a branch of the humanities or related and the skills acquired in the process of acquiring a degree in one of the branches of the humanities, such as academic writing and research skills, are referred to as humanities-skills.
+
+##  Purpose of the Research
+Linking the two phenomena of wage decoupling and the skills mismatch together this paper asks whether this skills shortage contributes to the growing and persistent wage decoupling in the developed world? More concretely, are people learning the wrong skills, leading to a surplus in the stock of human capital with skills meant for the dynamic service sector and a lack of STEM workers for STEM-related positions? The argument is that the surplus of humanities skills is depressing wages for workers within the humanities sector of the economy by overcrowding it, while the jobs requiring STEM skills remain vacant and their wages uncaptured in the data. To examine these questions this paper uses a mixed methodology. First, using quantitative analysis, this paper creates a model to prove that the increases in labour demand for STEM skills and the relative surplus of students acquiring humanities skills against STEM skills are linked to wage decoupling. Next, a qualitative methodology is used to analyze the effects institutions play in the phenomena of wage decoupling and the skills mismatch. 
+
+This paper first provides a literature review on wage decoupling. It then provides a theoretical framework for the quantitative analysis describing the different hypotheses and provides the theoretical foundation for a qualitative analysis of the institutional frameworks that either hinder or encourage the skills mismatch and wage decoupling. The quantitative analysis provides a macro-analysis of wage decoupling, skill demand, and skill supply developments in twelve OECD countries. It concludes by extrapolating political implications based on a functionalist and neo-institutional perspective of human capital formation and wage decoupling.
+
+***
+
+#  Literature Review
+This thematic literature review focuses on the key questions, problems, debates that underpin research relating to the phenomenon. A clear understanding of the concepts and methodologies used to capture the decoupling of wages from productivity is necessary to gain a clear understanding of the topic. The following subsections, first, summarise the methodological debates within the literature. Next, it summarises the two competing groups of hypotheses surrounding wage decoupling. The first group of hypotheses revolves around the influence of globalization and technological change on wage decoupling. The latter grouping of hypotheses considers the erosion of workers’ collective bargaining rights and public policy as alternative explanations for wage decoupling.
+
+##  Methodological Debate
+Why is it worthwhile to research wage decoupling? The concept has gained traction from the OECD, but it has its detractors. Chicago school economist Scott Sumner writes
+
+>The media continues to obsess over the so-called “wage decoupling” issue, the gap between the growth rate of median wages and the growth rate of GDP. Let’s start by asking why people are even interested in comparing these two growth rates. What are they supposed to show? Why not compare wages to average global temperature or the average score in an NBA game? (Sumner, 2019).
+
+The sarcasm aside, it is essential to ask fundamental methodological questions regarding the relationship between the two variables that underpin any model. Wage decoupling has become a popular research topic because the current reality is seriously challenging the standard economic wisdom of efficiency wage theory. Efficiency wage theory posits that labour markets are always seeking equilibrium between real wages and productivity (*i.e.*, when real productivity rises, real wages will also rise with it) (Skare & Skare, 2017, p. 541). Because the current phenomenon subverts traditional understanding, wage decoupling warrants the attention of economists and public policy specialists alike.
+
+There are other methodological questions relating to how productivity and wages are calculated. Martin Ford notes that the standard way to calculate wage decoupling is to adjust wages according to the Consumer Price Index (CPI) while productivity is adjusted using the GDP deflator, a broader measure of inflation in the entire economy, including prices of products that consumers do not purchase. This is logical because we measure everything produced against compensation, but workers' wages are not destined for every product produced in the economy. As a result, information technologies are much more important in the GDP deflator than in the CPI. Conservative economists argue that the GDP deflator should be applied to productivity and wages, narrowing the decoupling between the two significantly (Ford, 2015, p. 38). The standard method of calculating wage decoupling was created by Lawrence Mishel from the Economic Policy Institute (EPI) and shows that in the USA from 1948-1973 – a time Ford calls the “golden era of postwar prosperity” (*Ibid.* p. 36) – productivity growth and wage growth nearly match perfectly. After 1973 productivity growth continues at roughly the same rate, but wage growth stagnated. Productivity had grown 254.3% from 1948-2011, while wages had grown 113.1% in the same period (*Ibid.*).
+
+Brynjolfsson & McAfee use a different calculation of wage decoupling comparing the growth of Median Income per capita against Real GDP per capita, demonstrating that between 1973 and 2011, median hourly wage grew on average by 0.1% per year while productivity grew by 1.56% per year from ’73 – 2000 and 1.88% per year from 2000-2011 (Brynjolfsson & McAfee, 2014, p. 132f).
+
+Other methods of measuring productivity include using labour productivity, defined as “the ratio of real value added at factor cost to total” (Galgoczi, 2018). Pola Schneemelcher & Philipp Ständer from the Jacques Delors Institut utilize both this and the GDP per Capita methods showing that labour productivity narrows the gap in some countries in Europe but demonstrates that wage decoupling is a reality in most countries (Schneemelcher & Ständer, 2018).
+
+Within the ways of measuring wages, there are different methods for the measurement of real labour compensation. For example, in a 2015 EPI briefing paper, Josh Bivens & Lawrence Mishel support the original hypothesis espoused in the technical paper by Lawrence Mishel & Jared Bernstein that was the first to draw attention to the still-growing gap between the increasing productivity and stagnating wage growth in the USA. Bivens and Mishel claim that wage decoupling is a reality and defend their methodological choices of the original paper. They measure “cumulative growth in both net productivity of the total economy (inclusive of the private sector, government, and non-profit sector) and inflation-adjusted average hourly compensation of private-sector production/nonsupervisory workers since 1948” (Bivens & Mishel. 2015, p. 4). This group comprises over 80% of payroll employment, which they qualify as the “typical” American worker (*Ibid.*).
+
+Alternatively, authors do not constrain what sectors they derive their labour compensation data from. Instead, they will opt for real average compensation or real median compensation. The difference between them can be stark. In their 2018 Economic Outlook, the OECD shows over a timespan from 1995-2013 that labour productivity grew 30%, real average compensation grew 23%, and real median compensation only grew 16%. This discrepancy can largely be attributed to job polarization, where we see a “decline in the share of middle-skill, middle-pay jobs relative to jobs with higher or lower skill levels and pay” (OECD, 2017, p. 84).
+
+##  Technology and Globalization
+The hypotheses that analyze the impact of technology and globalization on wage decoupling have mostly been adopted by futurists who explore predictions and possible futures and how they may emerge from present conditions. Currently, futurists describe how industry 4.0 will dramatically transform our economies and the way we work. Futurist scholars – in books with titles like *Robots Will Steal Your Job: but That’s OK: How to survive the economic collapse and be happy* by Federico Pistono(2012); *The Second Machine Age: Work, Progress and Prosperity in a Time of Brilliant Technologies* by Andrew McAfee & Erik Brynjolfsson (2014); *Rise of the Robots: Technology and the Threat of a Jobless Future* by Martin Ford (2015); and *The Fourth Industrial Revolution* by Klaus Schwab (2016)– theorize that new technologies such as artificial intelligence, robotics, the internet of things, autonomous vehicles, 3D printing, and quantum computing, will result in a future where these new technologies will destroy more jobs than they create because of their increased productivity in cognitively taxing but routine tasks.
+
+Martin Ford dedicates a whole subchapter to wage decoupling, albeit centred around the US. He summarises the conventional explanations of the phenomenon provided by economists who explain women entered the workforce in the ’70s, increasing labour supply, and that a series of economic crashes, most notably the 2001 crash, created a weaker labour force, suppressed wages. Ford states, however, that this is a phenomenon that predates most of the economic crashes and growth for large firms never stopped. He concludes that “the fruits of innovation throughout the economy are now accruing almost entirely to business owners and investors, rather than workers” (Ford, 2015, p. 35). Ford’s futurist colleagues, Brynjolfsson & McAfee, conclude, “The first two winners are those who have invested and accumulated significant quantities of capital, such as equipment, structures, intellectual property, or financial assets” (Brynjolfsson & McAfee, 2014, p. 133). For futurists, technology is what is driving wage decoupling and economic inequality.
+
+Brynjolfsson & McAfee call this “the Great Decoupling,” and the theory has been applied to other countries. In Is the Great Decoupling Real?, Marinko & Damian Skare (2017) investigate the divergence of real labour productivity and real wages and employment in ten countries throughout 1950-2014, providing empirical evidence to the phenomenon. They challenge Brynjolfsson & McAfee’s hypothesis stating they “focus on the use of technology by labor rather than the structural change away from manufacturing” (Skare & Skare, 2017, p. 452). By including employment, they claim they can analyze long-run associations and minimize bias. They conclude that 1980 is a common cut-off point in many countries where wages began to stagnate while productivity continued to rise and that the great decoupling is real and global.
+
+The OECD (2018) states in its papers that wage decoupling is a key public policy issue. On the foundation of previous literature, the OECD introduces interesting dynamics to the discussion. They have identified that wage decoupling is present in most countries at varying degrees but not in all of them – roughly two-thirds (Schwellnus, Kappeler & Pionnier, 2017a; Schwellnus, Kappeler & Pionnier, 2017b; Schwellnus, Pionnier, & Crivellaro, 2018). They also claim that technological change and globalization are primarily responsible for wage decoupling.
+
+The OECD states, “Trade and technology are mutually reinforcing and interact in complex ways in shaping the structure of labour markets” (OECD, 2017, p. 88). New technologies contribute to rising inequality and compress the labour share when they replace low-skill, low-pay work and create new high-skill high-pay positions, while increased trade integration compresses the labour share through competitive pressures (OECD, 2018, p. 60).
+
+Similarly, in Labour share developments over the past two decades (2018), the authors elaborate on the “winner-takes-most” dynamic. “Such dynamics imply that (i) the labour share of firms at the technological frontier declines and (ii) production is reallocated toward such firms” (Schwellnus, Pionnier, & Crivellaro, 2018, p. 23). New firms have a low amount of human capital to begin with, or more successful firms can digitalize faster, increasing their production efficiency and profits. In contrast, average firms are not able to invest as much into new technologies and thus lag. An earlier study by Giulia Faggio Kjell G. Salvanes and John Van Reenen called “The evolution of inequality in productivity and wages: panel data evidence” (2010) further supports this. They conclude that wage decoupling can largely be attributed to inequality between firms and within industries and the introduction of new technologies.
+
+## Labour and Ideology
+In the technical paper by Mishel & Bernstein entitled *Is the Technology Black Box Empty?: An Empirical Examination of the Impact of Technology on Wage Inequality and the Employment Structure* (1994), which first recognized the wage decoupling phenomenon, argued that technological change had always been a constant economic reality. Therefore, there is no obvious association between technology and increases in wages or income inequality. In its papers on wage decoupling, the EPI ultimately argues that labour rights and benefits have lagged. “Decoupling coincided with the passage of many policies that explicitly aimed to erode the bargaining power of low- and moderate-wage workers in the labor market” (Bivens & Mishel 2015). They argue that this is where policymakers need to look if they want to reverse the decoupling.
+
+Some studies include the benefits or expenditure of firms towards social insurance programs in their analysis. A study by Andrew Sharpe & James Uguccioni (2017) analyzes wage decoupling based on four sources: rising earnings inequality, employer contributions to social insurance programs, rise in consumer prices, and decline in the labour’s share of aggregate income. They conclude that wage decoupling was present in eight of the eleven OECD countries studied. “The size of the productivity-wage gap varied by country, as did the components driving its growth. Increasing inequality and labour’s falling share of income increased the productivity-wage gap in most of the countries studied” (Sharpe & Uguccioni, 2017, p. 42). Using earnings inequality as an independent variable when studying the relationship between wage decoupling and earnings inequality is that the relationship may be reversed.
+
+Technology is the most popular talking point within the wage decoupling discussion, but it ignores workers’ most powerful tool to increase their wages: collective bargaining. Empirically speaking, when firms find ways to increase productivity, such as through offshoring, “collective agreements shift trade-created rents to workers in the form of higher wages. The wage gains associated with collective bargaining are found to be similar across occupations” (Carluccio, Fougère & Gautier, 2015, p. 824). While similar firms without collective agreements, on average, do not.
+
+Despite this fact, union membership is falling, and collective solidarity is seemingly dissipating (Beckmann *et al.*, 2020; Figure 8). The American labour historian, Steve Fraser, laments at length in his book *The Age of Acquiescence* (2015) over American workers’ inability to imagine a better system than the predatory capitalism they currently live in. Even though the country’s rich history of collective protest against social and economic privilege, modern movements pale in comparison. According to Fraser, twenty-first-century Americans have submitted to a system that they perceive as permanent.
+
+How can we understand this social phenomenon? The Institute for International Political Economy Berlin, a left-leaning think-tank, has analyzed the state of society’s collective solidarity, for example, and sees increasing precarisation and individualization wrought on by neo-liberal reforms are eroding collective solidarity and link this with decreasing union-membership in Germany (Beckmann *et al.*, 2020). This has primarily been analyzed through an ontological lens or a phenomenological hermeneutic approach. Many conclude that the cultural hegemony of neoliberalism is so pervasive that it is eroding the power of collective solidarity and collective bargaining, thus causing wage decoupling.
+
+Empirically speaking, what proof exists of this? One study by Ceyhun Elgin & Tolga Umut Kuzubas (2013) conducted a cross-country panel study on a data set comprised of the data from 31 countries from 1960-2009 to examine the determinants of wage decoupling. They conclude that unemployment and the level of workforce unionization are the primary drivers of wage decoupling. They reason that because unemployment reduces bargaining power when shocks are applied to it, wage decoupling has a positive response. In contrast, when shocks are applied to unionization, which increases bargaining power, wage decoupling responds negatively. Conversely, shocks on wage decoupling appear not to affect unemployment (Elgin & Kuzubas, 2013).
+
+Despite this fact, union membership is falling, and collective solidarity is seemingly dissipating (Beckmann *et al.*, 2020). The American labour historian, Steve Fraser, laments at length in his book *The Age of Acquiescence* (2015) over American workers’ inability to imagine a better system than the predatory capitalism they currently live in. Even though the country’s rich history of collective protest against social and economic privilege, modern movements pale in comparison. According to Fraser, twenty-first-century Americans have submitted to a system that they perceive as permanent.
+
+How can we understand this social phenomenon? The Institute for International Political Economy Berlin, a left-leaning think-tank, has analyzed the state of society’s collective solidarity, for example, and sees increasing precarisation and individualization wrought on by neo-liberal reforms are eroding collective solidarity and link this with decreasing union-membership in Germany (Beckmann *et al.*, 2020). This has primarily been analyzed through an ontological lens or a phenomenological hermeneutic approach. Many conclude that the cultural hegemony of neoliberalism is so pervasive that it is eroding the power of collective solidarity and collective bargaining, thus causing wage decoupling.
+
+Empirically speaking, what proof exists of this? One study by Ceyhun Elgin & Tolga Umut Kuzubas (2013) conducted a cross-country panel study on a data set comprised of the data from 31 countries from 1960-2009 to examine the determinants of wage decoupling. They conclude that unemployment and the level of workforce unionization are the primary drivers of wage decoupling. They reason that because unemployment reduces bargaining power when shocks are applied to it, wage decoupling has a positive response. In contrast, when shocks are applied to unionization, which increases bargaining power, wage decoupling responds negatively. Conversely, shocks on wage decoupling appear not to affect unemployment (Elgin & Kuzubas, 2013).
+
+## Concluding Remarks on Literature
+To summarize the existing literature, wage decoupling can be measured in many ways. Some methods narrow the gap between productivity and wages compared to the traditional method championed by the EPI, and others can enlarge the rate of decoupling. Furthermore, the literature is primarily divided into two camps of primary hypotheses. The first one focuses on technological innovation and globalization as the primary drivers of wage decoupling. The other hypothesis focuses on the erosion of workers’ collective bargaining rights as the primary driver of wage decoupling. Piggybacking off the hype of recent scholarship on the fourth industrial revolution, the first hypothesis has been the primary object of study and discussion with dissenting opinions and mixed evidence.
+
+On the one hand, many futurist scholars argue that new technologies and globalization are allowing the financial gains provided by the newfound productivity created by awesome technologies and global supply chains to funnel into their own incomes. Meanwhile, the “typical” workers’ compensation increase does not match their real increase in productivity. On the other hand, there are scholars that refute this and claim that the inequality we see today is primarily due to existing political structures and the erosion of collective bargaining rights and solidarity. The evidence for the second hypothesis is more conclusive but remains in the realm of being descriptive of the phenomenon.
+
+New technologies that transform labour markets may be the catalysts for growing wage decoupling, but they need not be. Policies that support collective bargaining power and solidarity can mitigate the effects of new productivity-enhancing technologies on average wages, but they do not address the structural transformation of the labour market. The Elgin & Kuzubas (2013) study includes unemployment as a variable related to structural changes in the labour market as new technologies push workers out of their previous jobs. However, there is a gap in the research regarding the economic dynamics of the labour market. Notably, with regards to the skills that are in demand against the skills that workers are acquiring.
+
+The EPI (2015) and the OECD (2018) suggest active labour market policies, policies that support collective bargaining power, and policies for re- and up-skilling, with the ultimate goal of increasing wages. However, these policies land short of creating the skills that are in demand, increasing individual employability and responding to the labour market transformations. A quantitative analysis of labour market demand, such as job vacancies, is missing from the literature. Intuitively, an increase in job vacancies gives more bargaining power to potential workers, but it depends on the underlying reasons for the increase of vacancies. If jobs are not being filled because potential workers do not have the right skills and are instead acquiring skills already largely in abundance, this depresses wages in certain sectors while the jobs being created by the new technologies go unfilled and their wages not captured in the data. This paper fills this gap in the literature by analyzing the effect of job vacancies as a measure of skill demand and university students in specific fields of study as a measure of skill supply on the rate of wage decoupling.
+
+***
+
+#  Theoretical Framework
+To establish a theoretical framework for this paper, we need to determine where the fourth industrial revolution, wage decoupling, and the skills mismatch intersect. This section evaluates and explains relevant concepts at the nexus of the literature in wage decoupling, the fourth industrial revolution, and skills mismatch to demonstrate how this research fits into the broader literature. This section demonstrates the underlying theoretical basis of most papers dealing with skills mismatch and human capital formation are based on functionalism. Functionalists believe all aspects of society serve an interrelated purpose and that governments are responsible for planning and directing society, meeting social needs and enforcing norms (Bhambhri, 1973). First, it explains the dynamics between new technologies and human capital. Second, it looks at the three main dimensions of the skills mismatch, skills shortage, on-the-job skills mismatch, and macro-economic skills mismatch. This theoretical discussion provides the basis for the three hypotheses that underpin the quantitative analysis of this paper. Finally, it provides a theoretical basis for the qualitative analysis and case study selection. The quantitative analysis provides a macro analysis of the relationship between the skills mismatch and wage decoupling. The ensuing case study and country selection demonstrates how institutions and policies matter. 
+
+##  The Race Between Education and Technology: origins of the skills mismatch
+This paper is underpinned by the futurist metaphorical *race against the machine* in human capital formation. Most futurists would argue that new technologies are the driving force behind the labour market disruptions (Brynjolfsson & McAfee, 2016; Ford, 2015; Schwaab, 2016; Pistono, 2014). To dive deeper into this relationship between human capital formation and technology, we turn to Goldin and Katz’s *magnum opus*, *The Race Between Education and Technology* (2008). They present a compelling account of the importance of human capital formation has had in defining the past century for much of the industrialized world-but primarily for America. One of its primary arguments is that under the Tinbergian assumption that technology is skill-biased, meaning it increases the demand for high-skilled workers and thus their wages, thus technological progress will widen inequality unless it is countered by increases in the supply of human capital.
+
+Their analysis of the United States argues that rising inequality in the country “can be understood as the consequence of a slowing rate of accumulation of human capital, which has not kept pace with skill-biased technological change” (Acemoglu & Autor, 2012, p. 426). Katz & Goldin (2008) argue that politics underpinned the United States’ human capital formation exceptionalism and, more recently, its slide. Therefore, they argue, investment in human capital can play the role of a major equalizer.
+
+Their argument underscores the limitations of the canonical model developed by the seminal contributions of Gary Becker, who developed the idea of human capital, and Jan Tinbergen, who conceptualized the role new technologies had in labour market dynamics (Acemoglu & Author, 2012). In the canonical model, “technological progress raises the demand for skill, and human capital investments slake that demand. When demand moves outward faster than does the supply of human capital, inequality rises, and vice versa when supply outpaces demand” (*Ibid.*, p. 428). However, Goldin & Katz (2008) demonstrate that human capital is multidimensional. Notably, they give a nuanced view of how new technologies and the available skills supply affect the skills market changing the demand for certain skills and re-assigns value to these skills based on their supply. This dynamic between technological shifts and skills supply, they show, underlies earnings distributions over the last decades.
+
+In the book, they emphasize the role of education in driving economic growth and shaping the labour market. In David Baker’s *The Schooled Society* (2014), he argues that education is transforming the nature of the workplace and the market rather than labour demand transforming labour supply. This is notable because of the dynamic between human capital and the adoption of new technologies in the working world. According to Acemoglu and Autor (2012), the composition of the skills supply pool may affect the direction of technological progress and adoption. The existing supply of human capital may influence the pace of technological change because of human capital externalities and incentives for overall technological progress, i.e. without the requisite skills in the stock of human capital, new technologies may not be profitable. Moreover, the human capital and access to education is probably the most important factor underpinning technological progress.
+
+Still, new technologies are becoming ever more pervasive but through other forces. From the perspective of international political economy and that of the futurists, new technologies are being implemented due to competitive pressures. Frontier technologies first start in the fringes, but as their exposure increases and their knowledge bases developed and expanded, they diffuse more into the general economy (Kouhizadeh *et al.*, 2021). New technologies and increased digitalization have profoundly transformed many aspects of life and production. However, the stock of human capital required to operate these new technologies is not matching the speed at which it is being implemented. As a result, firms compete over the available stock of human capital.
+
+Human capital theory holds that the supply of skills is shaped by the profitability of investing in human capital (Becker 1964). Workers or jobseekers are incentivized to invest in general skills to increase their value in the marketplace. While this theory explains the supply of skills in the labour market, this theory positions firms as rational actors who make a cost-benefit analysis on the profitability of human capital investment. In this way, this theory fails to recognize how ‘market thickness’ (Lazear, 2009) and institutional contexts shape the supply and demand of skills. Studies in the sociology of education show that demand-side market signals only influence degree choice to a limited degree (Briggs, 2006; Reay *et al.*, 2001), and STEM disciplines remain among the least attractive degree choices for a host of reasons (Haynes, 2008). Moreover, workers with STEM skills, for example, are a central part of the discourse because they are sought after by non-STEM-related employers, while STEM-related employers necessitate their skills (Durazzi, 2019). Futurists, too, identify the growing need for STEM skills in economies more generally (Schwab, 2016) while the high skills required by other professionals with humanities skills (such as lawyers or journalists) are in surplus, and their value eroding by new technologies (Ford, 2015). This is the crux of this paper. It encapsulates the demand and supply-side issues of the skills mismatch while highlighting the role institutions and contexts play in shaping it.
+
+The literature on human capital, in the broadest sense, focus on a high- vs low- vs medium-skills typology (Dwyer & Wright, 2019; Acemoglu & Autor, 2012; Goldin & Katz 2008; McGowan & Andrews, 2015; Vandeplas & Thum-Thysen, 2019), whose definitions are often taken for granted. For clarification, we can define high skills as skills attained through high degrees of training, education or experience that are used to complete more complex mental or physical tasks. Low skills are best defined in juxtaposition to high skills; skills attained through basic training or education. Acemoglu & Autor (2012) define middle-skills as the skills that lead to high skills i.e. skills are cumulative, a confluence of middle-skills leads to the development of high skills. However, this typology’s parsimony fails to realize how nuanced these skills are. The annual WEF’s Future of Jobs report, for example, consistently reports the importance of complex problem solving as one of the most important skills of the future (Schwab, 2016; WEF, 2020). However, the complex problem-solving required in humanities jobs is different from that of STEM jobs. While the complex problem-solving in humanities jobs is based on complex human relations and shifting dynamics, STEM workers need to understand eulerbridges or graph theory, for example. This nuance, presented in the dichotomy this paper presents between STEM and humanities skills, is a gap in the literature on wage decoupling and the skills mismatch that this paper seeks to fill.
+
+###  The Skills Mismatch
+There is no single definition to the skills mismatch; rather it has multiple dimensions. While not all its dimensions are necessary for the quantitative analysis of this paper, they provide insight into this research’s implications.
+
+####  Skill Demand
+One understanding of the skills mismatch is the phenomenon of employers encountering difficulties to fill their vacancies. The ‘skills shortage,’ as Vandeplas & Thum-Thysen name it, “reflects an imbalance between demand and supply on the labour market, as there are seemingly no suitable workers for the jobs to be occupied” (2019, p. 11). Their analysis of European skills shortages shows that countries with higher levels of educational attainment tend to encounter higher levels of skills shortages. This may have to do with the iterative nature of technology and human capital formation. Higher education begets new technologies and innovations which beget higher education and so forth (Goldin & Katz 2008). We can conclude that this skills shortage, despite higher educational attainment, is a result of a higher concentration of firms and industries that require high skills and the institutions for human capital formation following suit.
+Goldin & Katz’s argument does not differentiate between skill levels or types of skills; instead, they measure aggregate human capital. Still, the dynamic between human capital formation and technological progress allows us to understand better the race between education and technology, demonstrating why certain skills are more in demand than others and how this shapes the labour market. More importantly, especially for the understanding of the theoretical framework of this paper, we can demonstrate it with reports on skills shortages and surpluses around the world. Skills shortages across the European Union tend to be STEM-related, such as software skills. The four most severe shortages requiring software skills. Skills surpluses either concern general or routine tasks or profiles, unskilled labour, or are based on expertise in some field within the humanities (McGarth, 2020; Cedefop, 2016). How do we equate these demand-side dynamics and measure them against wage decoupling?
+A further dimension of the skills mismatch is the concept of the macro-economic skills-mismatch, which looks at the “skills mismatches between individuals available for work (the unemployed) and the available jobs (vacancies) and have compared them across time and across countries at the macro-level” (Vandeplas & Thum-Thysen, 2019, p. 5). This view of the skills mismatch is parsimonious in that it compares the overall demand for skills and the available stock of human capital. This highlights the cyclical dynamic of the skills mismatch where 
+
+>low-qualified (un)employment tends to be more sensitive to the cycle than high-qualified (un)employment, the difference in (un)employment rates between qualification groups typically increases in economic downturns. As a result, mismatch typically increases during an economic downturn and declines again during the recovery (Vandeplas & Thum-Thysen, 2019, p. 6). 
+
+On the other hand, the structural dynamics of the skills mismatch show that skills demand and supply are multidimensional as some skills are more in demand than others, and the existing stock of human capital may not possess the skills that are in demand. As a result of this skills mismatch, firms react by raising labour costs through training, more intense recruitment or offering more competitive wages (Vandeplay & Thum-Thysen, 2019; Cedefop, 2015). However, these higher wages are not captured in wage data because they are vacant positions.
+
+Through empirical evidence, we can see that the demand for STEM skills is rising and remains persistently high while humanities skills are at a surplus. Thus, the macro-economic mismatch is rising, and this dynamic would indicate that it is proving challenging to up- or re-skill workers to be viable for these STEM positions. This translates to the salaries of STEM positions are going unaccounted for in the literature. This lays the basis for our first hypothesis.
+
+**H1:** *The demand side of the skill mismatch directly contributes to rising wage decoupling.*
+
+####  Skill Supply
+Acemoglu & Autor, in their review of Goldin & Katz’s book, argue that new technologies have reduced the need for tasks historically performed by production, clerical, administrative support and sales workers (2012). This destabilizing factor of the fourth industrial revolution is transforming the job market through what Martin Ford calls the hollowing out of the jobs pyramid (2015; Schwab 2015). While less poetic, this phenomenon is also called job (or skill) polarization and is understood as a decline in the share of total employment attributed to middle-skill/middle-pay jobs. Empirically, Cedefop (the European Centre for the Development of Vocational Training) forecasts (2015) demonstrate that the demand for medium-skill/pay occupations is falling while the demand for high- and low-skill/pay occupations is rising; variations between countries exist. Skills polarization is due primarily to the automatability of routines, not exclusively cognitive or manual skills (Brynjolfson & McAfee, 2016). The jobs created by these new technologies often require high skills so that workers may be complementary to the low-cost technology they work with. This has resulted in degree inflation as “the college degree is becoming the high school diploma” (Brynjolfsson & McAfee, 2015, p. 201).
+
+This dynamic point towards this race between technology and education, and education is falling behind. This is conceptualized by another dimension of the on-the-job mismatch called the horizontal mismatch, which refers to “a mismatch between an individual’s field of study and the area (s)he is working in” (Vandeplas & Thum-Thysen, 2019, p. 12). This horizontal mismatch has manifested itself in a jobs gap, which is “the gap that often exists between the types of jobs that people want and the types of jobs that are available” (Banerjee *et al.*, 2016, p. 2). In their paper, *The Great Reversal in the Demand for Skill and Cognitive Tasks*, Paul Beaudry, David A. Green, & Benjamin M. Sand (2013) argue that in the decades leading to the year 2000, a strong, persistent increase in the demand for cognitive skills can be established. However, by the year 2000, the demand for cognitive skills started to decline even as the supply of high education workers continues to grow (2013). They document that, in response to this reversal recent college and university graduates have begun to perform lower-skilled jobs (2013). From a functionalist perspective, governments are proving incapable of getting the skill supply to match the market’s demands.
+
+Another dimension of the skills mismatch is the on-the-job mismatch. It measures “the discrepancies between the skills and qualifications of individuals who have a job and the skills/qualifications requirements of their job. It does not take into account the unemployed” (Vandeplas & Thum-Thysen, 2019, p. 13). This dimension has been widely studied, with results showing that workers are either over- or underskilled for their jobs (*Ibid.*; McGowan & Andrews, 2015; OECD, 2017). Müge Adalet McGowan & Dan Andrews explore its relationship with public policies and suggest that different levels of skill mismatch in different countries are related to differences in public policies. Their analysis suggests that the skills mismatch results in lower productivity. Policies that do not impede housing mobility, greater flexibility in wage negotiations, less stringent employment protection policies and higher participation in lifelong learning are associated with better labour market matching (2015).
+
+Conversely, one could argue that the overskilling of the labour market, in this case with humanities skills, has benefits for productivity (Vandeplas & Thum-thysen, 2019; Beaudry, Green, & Sand, 2013). In a model isolated from institutional contexts, such as that of Beaudry, Green, & Sand (2013), a stock of human capital rich with humanities skills makes the market competitive, where, arguably, only the best work in those positions resulting in productivity increases. Their model also concludes that “technological change in the model has only positive impacts on the productivity of cognitive tasks” (Beaudry, Green, & Sand, 2013, p. 14). This has important implications for wage decoupling because “the wage paid to an individual employed in a given occupation will reflect the number of effective units of skill embodied in the individual multiplied by the skill price” (*Ibid.*, p. 27). I.e. because of the high stock of human capital with humanities skills, employers have little incentive to increase wages.
+
+Empirically speaking, we can demonstrate that the supply of high skills is rising. However, the composition of this supply does not reflect the growing demand for STEM skills against humanities skills. This leads to a jobs gap, horizontal mismatch and on-the-job mismatch as people who have acquired (in surplus) humanities skills are pushed into less well-paying jobs. This informs our second hypothesis:
+
+
+**H2:** *A stagnant difference in the supply of STEM skills against Humanities skills contributes to rising wage decoupling.*
+
+####  Skills Mismatch
+While both the first and second hypotheses focus on the demand and supply sides of the skills mismatch, respectively, this paper is interested in seeing how both facets of the skills mismatch lead to wage decoupling. Therefore, the third hypothesis is both of the former hypotheses to see how the demand and supply sides interact and influence wage decoupling.
+
+**H3:** *Despite growing skills supply, the relative difference between the supply of STEM skills against Humanities skills does not match the skills demand leads to rising wage decoupling.*
+
+##  Neo-Institutionalism 
+Finally, we come to the qualitative part of this theoretical framework. While the quantitative analysis takes a functionalist perspective as it describes how governments are falling short of creating the right environment capable of matching the skills supply to match the market’s skills demands, the qualitative section focuses on a neo-institutional perspective. Neo-institutional theory posits that “institutional structures, rules, norms, and cultures constrain the choices and actions of individuals when they are part of a political institution” (Breuning, 2011). This paper takes a neo-institutionalist perspective demonstrating that while technology is a catalyst for wage decoupling, public policies and institutions that govern the labour market are its amplifier and mitigator. This section defines the three aspects that are the foundation of the qualitative analysis of this paper.
+
+The first aspect of the neo-institutional framework used for this analysis is found in the Varieties of Capitalism (VoC) – defined as how the state organizes resource production – and welfare regime (WR) – defined as how these resources are collected and (re)distributed – typologies. Specifically, we are Martin Schröder’s unification of these typologies developed by Hall & Soskice’s *Varieties of Capitalism* (2001) on production typologies and Esping-Andersen’s *Social Foundations of Post-industrial Economies* (1999) on welfare typologies. Martin Schröder (2013) unified these typologies when noticing a pattern that states seemed to mix their specific VoC with a WR. To be exact, he hypothesizes that coordinated market economies (CME) go well with the social democratic and conservative WRs, while liberal market economies (LME) adopt liberal WRs. This aspect is vital for understanding different institutional frameworks, how they compare and how they encourage certain policies beneficial for mitigating wage decoupling and the skills mismatch.
+
+Based on these typologies we can define three broad groups of states: Bismarckian, Nordic, and Liberal. Occupation segmented insurance-based systems characterize Bismarckian states (Palier, 2010). Their education and social polices are segregated, and educational spending is low. Furthermore, “the family as a welfare provider is predominant. Stratified schooling structures characterise these regimes. The vocational system is partly financed by the state and partly by employers. Instead of education being addressed as a social right, it is more closely linked to the overall socio-economic structure of society”(Graf & Gardin, 2017, p. 4). Nordic states are “characterized by extensive economic re-allocation and high taxation levels, allowing for universal policies covering, for example, pensions, health insurance, child allowances, comprehensive free-of-charge education and extensive childcare” (Lundahl, 2006, p. 4) where these are seen as fundamental rights. They have high education spending, a close relationship between education and social policy (Graf & Gardin, 2017). Finally, market-based welfare regimes characterize Liberal states (Schröder, 2009). Here spending on education is around the OECD average but is distinguished by the inclusion of numerous private schools as alternatives to the public system. Their social protections are low and limited (Graf & Gardin, 2017).
+
+The second aspect is Emmenegger *et al.*’s (2012) dualization theory, which describes the process of economic stratification of the haves (insiders) and have-nots (outsiders). They define dualization as the implication that “policies [or lack thereof] increasingly differentiate rights entitlements and services provided to categories of recipients“(Emmenegger *et al.*, 2012, p. 10). The categories of recipients are insiders and outsiders. Insiders can be defined as individuals in the labour market with significant protections and not feel threatened by unemployment. “Outsiders, on the other hand, are unemployed, working in the informal sector, or hold formal jobs characterized by low levels of protection and employment rights, lower salaries, and precarious levels of benefits” (Rueda *et al.*, 2015, p. 4). In Age of Dualization, they show that societies in the western world are undergoing dualization. This aspect is important for analyzing how dualization has influenced the skills mismatch and thus wage decoupling.
+
+The final aspect of this analysis is Niccolo Durrazzi’s varieties of knowledge economies typology. He differentiates between the two predominant knowledge economies: advanced manufacturing and dynamic services, which he defines based on a country’s given major sector, based as a percentage of gross value added in 2011 (2019). Countries with above-average gross value added (GVA) contributions to manufacturing, like Germany, are considered advanced manufacturing knowledge economies. Countries with above-average GVA contributions to dynamic services, Like the UK, are considered dynamic services knowledge economies (*Ibid.*). I, however, would add a third variety to the typology called mixed, defined as economies with comparably large manufacturing and dynamic services sectors based on their relative contributions to the gross value added of their output. This would include countries like Sweden with comparably large manufacturing and dynamic services sectors (*Ibid.*). Finally, this aspect is relevant to the analysis because the type of knowledge economy a country is an institution and creates its own rules and norms constraining and guiding citizens and policymakers in specific directions.
+
+**H4:** *Institutional contexts play a role in the dynamics of wage decoupling and the skills mismatch.* 
+
+##  Concluding Remarks
+This theoretical framework with the necessary foundation to analyze the thesis posited in this paper. This paper fills a gap within the literature on wage decoupling as it has thus far shied away from an analysis based on skill demand and supply. With a functionalist lens, it adds to the literature on the skills mismatch, suggesting a more nuanced approach to the composition of skills, focusing on the economic sectors those skills are intended for: either STEM or humanities ventures. Finally, this paper provides the foundation for a qualitative analysis of policies related to the fourth industrial revolution based on a neo-institutional perspective. 
+
+***
+
+# Methodology and Data
+This section focuses on providing an overview of the methodology of this paper. It explains and justifies the choice of datasets, the creation of variables, and case selection. This first subsection focuses on the datasets used to create the dataset for the model to test the hypotheses of this paper. It looks at a series of publicly available OECD ‘National Accounts Statistics’ (2021b), ‘Employment, Labour Market Statistics’ (2019a), ‘Education at a glance’ (2020a and b), ‘Short-Term Labour Market Statistics’ (2021c), and ‘Social protection and wellbeing’ (2019 b and c) databases.
+
+##  The Dependent Variable
+###  Wage decoupling
+To calculate wage decoupling in the countries concerned in this case selection, I used the OECD’s ‘National Accounts Statistics’ (NAS) and ‘Employment, Labour Market Statistics’ (ELMS) databases. The NAS database contains annual and quarterly data of many countries’ gross domestic product from 1955 to the present. It includes *inter alia* the three primary approaches of calculating gross domestic product (expenditure-based, output-based, and income-based), GDP per capita, real GDP growth rate. “Data are internationally comparable by following the System of National Accounts 2008 (SNA 2008), except for Chile, Japan and Turkey which report under SNA 1993.” (OECD 2021b)
+
+The wage data stems from the OECD’s ‘Average Annual Wages’ dataset, a subset of the ELMS database. It contains a range of annual labour market statistics and indicators from 1960. To calculate wage decoupling, I chose to use the classical method developed by the EPI in 1994. From the NAS Database, I extrapolated the Gross domestic product (expenditure approach) and the Growth rate measurement, which is the real GDP growth with inflation accounted for by the GDP deflator. Data is selected from 1995 to 2018. 2018 was chosen as an end date over 2020 because of the effects of the coronavirus pandemic and its exogenous effects on GDP could have had the model calculate erroneous correlations and due to data limitations of the other datasets. 1995 was chosen because all the countries in the database have data inclusive of 1995-2018 and for ease of comparing the results to the results of the OECD paper on wage decoupling, whose model also begins in 1995. Then using the statistical software, R, I calculate the cumulative growth from 1995 to 2018.
+
+Calculating wage growth is done much the same way. Unfortunately, the database provides no wage growth measurement, so we must calculate that ourselves. That is done by extrapolating the average annual wages in the national currency of the selected country from every year based on 2019 prices. This allows the wages to be deflated by the consumer price index providing us with constant wages and thus real growth. I then use R to calculate the year-on-year cumulative real wage growth from 1995-2018.
+
+###  Manual Creation of Wage Decoupling Measurement
+We have the two variables necessary to measure wage decoupling. We need simply merge the two databases and then calculate the difference between the growth in production and the growth in wages to provide us with a rate of wage decoupling.
+
+```{r Setup for Figure 1.1}
+GDP_Growth <- read.csv("Data/SNA_TABLE1_20052021134931020.csv")
+
+Countries <-  c("Australia", "Austria", "Belgium", "Finland", "France", 
+                "Germany", "Italy", "Japan", "Portugal", "Sweden", 
+                "United Kingdom", "United States")
+
+GDP_Growth1 <- GDP_Growth %>% # create new Dataframe in case we use the original
+  filter(Transaction == "Gross domestic product (expenditure approach)" # select expenditure approach, no particular reason for this
+         & Measure == "Growth rate" # Select Growth rate
+         & Country %in% c(Countries) # Narrow country focus 
+         & Year > 1994
+         & Year < 2019) %>% 
+  arrange(Country, Year) %>% # excludes data from before 1995
+  select(Value, Country, Year, Transaction, Measure) %>% # filters out all the unimportant stuff we do not want to see
+  rename(Real_GDP_Growth = Value)
+
+GDP_Growth1 <-  within(GDP_Growth1, Real_GDP_Growth[Year == 1995] <- 0) %>% #sets 1995 as a base year
+  mutate_all(funs(ifelse(is.na(.), 0, .))) # turns all NAs into 0s
+
+GDP_Growth1$Cumulative_GDP_Growth_by_Country <- # Creates new variable that is the cumulative sum of each value before it for individual countries.
+  as.numeric(unlist(tapply(GDP_Growth1$Real_GDP_Growth, 
+                           GDP_Growth1$Country, 
+                           cumsum)))
+```
+
+```{r Setup for Figure 1.2}
+Wages <- read.csv("Data/AV_AN_WAGE_20052021135239833.csv")
+
+Wages1 <- Wages %>% 
+  filter(Series == "2019 constant prices and NCU" # Let us use 2019 constant prices to account for inflation and National Currencies
+         & Country %in% c(Countries) # same as GDP, letr us see what sticks
+         & Time > 1994
+         & Time < 2019) %>%  # Makes 1995 as the base year
+  arrange(Country, Time) %>% 
+  select(Country, Time, Series, Value) %>% 
+  rename(Year = Time, Real_Wage_Growth = Value)
+ages2 <-  Wages1 %>%
+  arrange(Country, Year) %>% # first sort by country then year
+  mutate(Diff_year = Year - lag(Year),  # Difference in time 
+         Diff_growth = Real_Wage_Growth - lag(Real_Wage_Growth), # Difference in real growth between years
+         Rate_percent = (Diff_growth/Diff_year)/lag(Real_Wage_Growth) * 100) # growth rate in per cent
+
+Wages2 <-  Wages1 %>%
+  arrange(Country, Year) %>% # first sort by country then year
+  mutate(Diff_year = Year - lag(Year),  # Difference in time 
+         Diff_growth = Real_Wage_Growth - lag(Real_Wage_Growth), # Difference in real growth between years
+         Rate_percent = (Diff_growth/Diff_year)/lag(Real_Wage_Growth) * 100) # growth rate in per cent
+
+Wages2 <-  within(Wages2, Rate_percent[Year == 1995] <- 0) %>%  # forces 1995 to be a base year where all countries start from 0. Otherwise it calculates from the lagging country's base year.
+  mutate_all(funs(ifelse(is.na(.), 0, .)))
+
+Wages2$Cumulative_Wage_Growth_by_Country <- 
+  as.numeric(unlist(tapply(Wages2$Rate_percent, Wages2$Country, cumsum))) 
+```
+
+```{r Merge data 1}
+WD <- merge(x = GDP_Growth1, y = Wages2, by = c("Country", "Year"))
+
+WD <- WD %>% select(Country, Year, Real_GDP_Growth, 
+                                 Real_Wage_Growth, 
+                                 Cumulative_GDP_Growth_by_Country, 
+                                 Rate_percent, Cumulative_Wage_Growth_by_Country)
+
+WD$Decoupling_Rate <- WD$Real_GDP_Growth - WD$Rate_percent # I opted for the former (simpler) of the two 
+
+WD$Cumulative_decoupling <- as.numeric(unlist(tapply(WD$Decoupling_Rate, 
+                                                     WD$Country, cumsum)))
+```
+
+```{r Figure 1}
+Fig_1 <- ggplot(WD, aes(x = Year)) + 
+  labs(title = "Figure 1: Wage Decoupling in select countries, 
+       1995-2018", 
+       y = "Real growth in per cent",
+       caption = "Source: OECD, 'National Accounts Statistics Database' (2021) and 
+       OECD, 'Employment, Labour Market Statistics Database' (2019)") +
+  geom_line(aes(y = Cumulative_Wage_Growth_by_Country, 
+                colour = "Real wage growth")) + 
+  geom_line(aes(y = Cumulative_GDP_Growth_by_Country, 
+                colour = "Real GDP growth")) +
+  geom_line(aes(y = Cumulative_decoupling,
+                colour = "Cumulative rate \nof decoupling")) +
+  geom_ribbon(aes(ymin = Cumulative_Wage_Growth_by_Country, 
+                  ymax = Cumulative_GDP_Growth_by_Country), 
+              fill = "pink", 
+              alpha = 0.2) +
+  facet_wrap(Country ~ .) + # scales are free to analyze developments in individual countries more acutely
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45),
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_1
+```
+
+```{r}
+cum_decoup <- WD %>%
+  filter(Year == 2018) %>%
+  select(Cumulative_decoupling)
+
+DF1 <- data.frame(Countries, cum_decoup)
+```
+
+```{r Table 1}
+DF1 %>%
+  kbl(caption = "Table 1: Cumulative decoupling 1995-2018",
+      col.names = c("Country", "Cumulative decoupling")) %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  footnote(general = "OECD, 'National Accounts Statistics Database' (2021) and 
+       OECD, 'Employment, Labour Market Statistics Database' (2019)",
+           general_title = "Source: ", title_format = "italic") 
+```
+
+#### Interpretation
+We can see in the graph above that context matters as the rate of decoupling is not uniform across countries. Portugal, Italy and Japan have had real wage growth below 10%, which have translated to higher degrees of decoupling, except for Italy, productivity growth remains meagre. The three large European economies and Japan all lie around the 15% mark. Here still productivity is outstripping growth in labour compensation. However, in Germany and France, it appears to have evened out over the past couple of years. The country with the most wage decoupling is Australia with a 46% increase since 1995. Sweden on the other hand has among the highest productivity growth rates and has a decoupling rate of around 10% demonstrating that wage decoupling can be mitigated while encouraging productivity growth.
+
+##  The Independent Variables
+The theoretical framework informed us about the concept of skills mismatch and its various dimensions and definitions. To understand how to measure skills demand and skills supply, we look to the methods used in calculating the skills mismatch to provide us with a roadmap for explaining how the skills mismatch relates to wage decoupling. This section first explains the difficulties in calculating these different dimensions and justifies the method this paper uses in its model. Defining all the dimensions of the skills mismatch, even though only one is being used in the model, is relevant to the paper as they play a role in later analysis.
+
+Due to the lack of data in a common format and location, there is no perfect way to measure skills shortages (Vandeplas & Thum-Thysen, 2019). Vandeplas & Thum-Thysen (2019) state that the persistent existence of a high vacancy rate with a high unemployment rate would reflect inefficiencies in labour market matching. They write that it would be ideal to directly compare the composition of vacancies in terms of qualification levels, sector, and or skill requirements. Unfortunately, data on job vacancies is not always available or reliable and instead, simplified measures, coupled with verifiable assumptions, can be used to act as proxies for supply and demand. This is the method this paper uses to calculate skill demand and supply. The following subsections explain the variables this model uses to calculate skill demand and supply are calculated.
+
+
+###  Skill Demand
+To calculate skill demand, this paper looks to the methodology proposed by Vandeplas & Thum-Thysen (2019) in their calculations of macro-economic skills mismatch. Cognizant of the unavailability of more granular data looking at vacancies in qualification levels, sector, and or skill requirements, I use job vacancy data as a proxy for skills demand. The data stems from the OECD’s (2021c) database on ‘Registered Unemployed and Job Vacancies,’ a subset of the ‘Short-Term Labour Situation’ database, which provides statistics based on two sources: labour force surveys and administrative data. I use the job vacancy data as a proxy for skill demand, cognizant of the persistent demand for STEM skills and low skills. This persistent demand would be reflected in the job vacancy data making it an appropriate proxy. The OECD’s database states that job vacancies data “provides estimates of the number of unfilled job vacancies across national economies” (*Ibid.*). Countries register their job vacancy data differently, however.   
+
+```{r Setup for Figure 2 and 3}
+Job <- read.csv("Data/LAB_REG_VAC_20052021135712317.csv")
+
+Job1 <- Job %>% 
+  filter(Subject %in% c("Job vacancies, Total, Unfilled vacancies (stock)", 
+                        "Job vacancies, Total, New vacancies (flow)")  # Select Growth rate
+         & Country %in% c(Countries)
+         & Time > 1994
+         & Time < 2019) %>% arrange(Country, Time) %>% # excludes data from before 1995 and after 2019
+  select(Value, Country, Time, Subject) %>% 
+  rename(Job_Vacancies = Value, Year = Time)
+
+Job1 <-  Job1 %>%
+  arrange(Country, Year) %>% # first sort by country then year
+  mutate(Diff_year = Year - lag(Year),  # Difference in time 
+         Diff_growth = Job_Vacancies - lag(Job_Vacancies), # Difference in route between years
+         Rate_percent_jobs = (Diff_growth/Diff_year)/lag(Job_Vacancies) * 100) # growth rate in percent
+
+Job1 <-  within(Job1, Rate_percent_jobs[Year == 1995] <- 0) %>%  # forces 1995 to be a base year where all countries start from 0
+  mutate_all(funs(ifelse(is.na(.), 0, .)))
+
+Job1 <- Job1
+Job1$Cumulative_Vacancy_Growth <- as.numeric(unlist(tapply(Job1$Rate_percent_jobs, 
+                                                           Job1$Country, 
+                                                           cumsum)))
+```
+
+```{r Figure 2}
+Fig_2 <- ggplot(Job1, aes(x = Year, y = Job_Vacancies/1000)) + 
+  labs(title = "Figure 2: Amount of job vacancies, 
+       1995-2018", 
+       y = "Growth in thousands",
+       caption = "Nota bene: Most countries register 'unfilled vacancies (stock),' except for France and Japan who only register 'new vacancies (flow).' 
+       I mitigate this discrepancy by measuring job vacancies’ year-on-year growth, which would translate to growth in skill demand rather 
+       than focusing on absolute numbers.
+       Source: OECD, 'Short-Term Labour Situation Dataset' (2021)") +
+  geom_line(color = "red") + 
+  facet_wrap(Country ~ ., scales = "free_y") +
+  theme_minimal() +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 45),
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_2
+```
+
+```{r Figure 3}
+Fig_3 <- ggplot(Job1, 
+                 aes(x = Year, 
+                     y = Cumulative_Vacancy_Growth)) + 
+  labs(title = "Figure 3: Cumulative job vacancy growth, 
+       1995-2018", 
+       y = "Cumulative growth in per cent",
+       caption = "Source: OECD, 'Short-Term Labour Situation Dataset' (2021)") +
+  geom_line(color = "red") + 
+  facet_wrap(Country ~ .) +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 45),
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_3
+```
+
+```{r Merge data 2}
+WD1 <- merge(x = WD, 
+             y = Job1, 
+             by = c("Country", "Year"), 
+             all = T)
+
+WD1 <- WD1 %>% select(-c(Diff_growth, Diff_year, Subject))
+```
+
+```{r Figure 4}
+Fig_4 <- ggplot(WD1, aes(x = Year)) + 
+  labs(title = "Figure 4: Wage Decoupling vs Job Vacancies, 
+       1995-2018", 
+       y = "Growth",
+       caption = "Source: OECD, 'National Accounts Statistics Database' (2021) and 
+       OECD, 'Employment, Labour Market Statistics Database' (2019)") +
+  geom_line(aes(y = Rate_percent_jobs / 10, 
+                colour = "Job Vacancies\n divided by 10")) +
+  geom_line(aes(y = Decoupling_Rate,
+                colour = "Rate of Decoupling")) +
+  facet_wrap(Country ~ ., 
+             scales = "free") + # scales are free to analyze developments in individual countries more acutely
+  theme_minimal() + 
+  theme(legend.position = "right", 
+        axis.text.x = element_text(angle = 45),
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_4
+```
+
+#### Interpretation
+We can see in figure 2 that there is a steady increase of job vacancies in nearly every country, indicating that skill demand rising but supply cannot match the demand. Figure 3 demonstrates how closely related the rate of decoupling is to the year-on-year change of job vacancies. This gives credence to our hypotheses 1 & 3.
+
+### Skill Supply
+To calculate the skill supply I use the methodology that Vandeplas & Thum-Thysen (2020) use to define high skills: tertiary educational attainment. I then divide high skills based on what sector those skills are intended for: STEM or humanities. I compare the number of graduates who have gained STEM skills against graduates who have acquired humanities skills over space and time. To do this, I use two subsets of the OECD’s ‘Education at a glance’ database: The ‘Share of graduates by field’ and the ‘Graduates by field’ datasets. I look at two different proxy variables to calculate high skill supply. The first is the relative difference in the growth of STEM against Humanities skills. The second measure is one of the absolute growth of the stock of human capital with high skills.
+
+For the first measure, I calculate the difference between graduates who have acquired STEM against humanities skills through tertiary education to analyze the changes over time. This would demonstrate the growth in the supply of high-skilled individuals in the labour pool. I look to the OECD’s Distribution of ‘graduates and entrants by Field’ dataset, a subset of its Education at a glance database. It measures the Graduates in each educational field as a percentage of the total sum of graduates in all fields (OECD, 2020b). This way, we can calculate the percentage difference between graduates at all tertiary levels with STEM skills against those with humanities skills. The database defines the different high levels of education on a scale going from level 5 to 8. In order of level, they include “Short-cycle tertiary education,” “Bachelors or equivalent level,” “Master’s or equivalent level,” “Doctoral or equivalent level” (*Ibid.*). The database also differentiates on different fields of education whose proportions I add together into two distinct groups: STEM-Skills and Humanities Skills. I group “Natural sciences, mathematics and statistics,” “Information and Communication Technologies,” “Engineering, manufacturing and construction,” and “Health and welfare” into STEM skills. “Arts and humanities,” “Social sciences, journalism and information,” “Business, administration and law,” “Services”, and “Education” I group as humanities skills. I then calculate the difference between these two variables to determine the gap of entrants into the labour market with humanities skills against STEM skills.
+
+
+```{r Setup for Figure 5}
+Grad <- read.csv("Data/EAG_GRAD_ENTR_FIELD_06042021221432942.csv")
+Grad1 <- Grad %>% 
+  filter(SEX == "T" 
+         & Country. %in% c(Countries)
+         & Field %in% c("Arts and humanities", 
+         "Social sciences, journalism and information", 
+         "Natural sciences, mathematics and statistics", 
+         "Information and Communication Technologies", 
+         "Engineering, manufacturing and construction", 
+         "Business, administration and law", 
+         "Education", 
+         "Health and welfare", 
+         "Services")) %>% 
+  arrange(Country., Year.) %>% # excludes data from before 1995
+  select(Country., Year., Level.of.education, Field, Value, Indicator) %>%
+  rename(Country = Country., Year = Year., Proportion_of_students = Value)
+```
+
+```{r Figure 5}
+Fig_5 <- ggplot(Grad1, 
+                  aes(x = Year, 
+                      y = Proportion_of_students, 
+                      color = Field)) + 
+  labs(title = "Figure 5: Proportion of graduates by field, 
+       2005-2018", 
+       y = "Growth",
+       caption = "Source: OECD, 'Education at a glance database' (2020)") +
+  geom_line() + 
+  facet_wrap(Country ~ ., 
+             scales = "free") +
+  theme_minimal() +
+  theme(legend.position = "right", 
+        axis.text.x = element_text(angle = 45),
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_5
+```
+
+```{r Setup for Figure 6}
+Grad1Art <- Grad1 %>% 
+  filter(Field %in% c("Arts and humanities")) %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Art = Proportion_of_students)
+
+Grad1Soc <- Grad1 %>% 
+  filter(Field %in% c("Social sciences, journalism and information")) %>% 
+  arrange(Country, Year) %>% 
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Soc = Proportion_of_students)
+
+Grad1Bus <- Grad1 %>% 
+  filter(Field %in% c("Business, administration and law")) %>% 
+  arrange(Country, Year) %>% 
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Bus = Proportion_of_students)
+
+Grad1Edu <- Grad1 %>% 
+  filter(Field %in% c("Education")) %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Edu = Proportion_of_students)
+
+Grad1Ser <- Grad1 %>% 
+  filter(Field %in% c("Services")) %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Ser = Proportion_of_students)
+
+Grad1Nat <- Grad1 %>% 
+  filter(Field %in% c("Natural sciences, mathematics and statistics")) %>% 
+  arrange(Country, Year) %>% 
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Nat = Proportion_of_students)
+
+Grad1ICT <- Grad1 %>% 
+  filter(Field %in% c("Information and Communication Technologies")) %>% 
+  arrange(Country, Year) %>% 
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_ICT = Proportion_of_students)
+
+Grad1Eng <- Grad1 %>% 
+  filter(Field %in% c("Engineering, manufacturing and construction")) %>% 
+  arrange(Country, Year) %>% 
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Eng = Proportion_of_students)
+
+Grad1Hel <- Grad1 %>% 
+  filter(Field %in% c("Health and welfare")) %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Level.of.education, Field, Proportion_of_students, Indicator) %>%
+  rename(Proportion_of_students_Hel = Proportion_of_students)
+
+GradArt <- merge(x = Grad1Art, 
+                         y = Grad1Soc, 
+                         by = c("Country", "Year"))
+GradArt <- merge(x = GradArt, 
+                         y = Grad1Bus, 
+                         by = c("Country", "Year"))
+GradArt <- merge(x = GradArt, 
+                         y = Grad1Edu, 
+                         by = c("Country", "Year"))
+GradArt <- merge(x = GradArt, 
+                         y = Grad1Ser, 
+                         by = c("Country", "Year"))
+
+GradSTEM <- merge(x = Grad1Nat, 
+                         y = Grad1ICT, 
+                         by = c("Country", "Year"))
+GradSTEM <- merge(x = GradSTEM, 
+                         y = Grad1Eng, 
+                         by = c("Country", "Year"))
+GradSTEM <- merge(x = GradSTEM, 
+                         y = Grad1Hel, 
+                         by = c("Country", "Year"))
+
+GradArt <- GradArt %>% select(c(Country, Year, Proportion_of_students_Art, 
+                      Proportion_of_students_Soc, Proportion_of_students_Bus, 
+                      Proportion_of_students_Edu, Proportion_of_students_Ser)) 
+GradArt[is.na(GradArt)] <- 0
+
+GradSTEM <- GradSTEM %>% select(c(Country, Year, Proportion_of_students_Nat, 
+                        Proportion_of_students_ICT, Proportion_of_students_Eng, 
+                        Proportion_of_students_Hel))  
+GradSTEM[is.na(GradSTEM)] <- 0
+
+GradArt <- GradArt %>% transmute(GradArt, 
+                  Proportion_of_students_in_Hums = Proportion_of_students_Art + 
+                    Proportion_of_students_Soc + Proportion_of_students_Bus + 
+                    Proportion_of_students_Edu + Proportion_of_students_Ser)
+
+GradSTEM <- GradSTEM %>% transmute(GradSTEM, 
+                    Proportion_of_students_in_STEM = Proportion_of_students_Nat + 
+                      Proportion_of_students_ICT + Proportion_of_students_Eng + 
+                      Proportion_of_students_Hel)
+
+Grad2 <- merge(x = GradArt,
+               y = GradSTEM,
+               by = c("Country", "Year"))
+
+library(naniar)
+Grad2 <- Grad2 %>% 
+  replace_with_na(replace = list(Proportion_of_students_in_Hums = 0, 
+                                 Proportion_of_students_in_STEM = 0))
+
+Grad2$Diff_in_skill_sup <- 
+  Grad2$Proportion_of_students_in_Hums - Grad2$Proportion_of_students_in_STEM
+
+Grad2_isna <- Grad2[!is.na(c(Grad2$Proportion_of_students_in_Hums, 
+                             Grad2$Proportion_of_students_in_STEM, 
+                             Grad2$Diff_in_skill_sup)), ]
+```
+
+```{r Figure 6}
+Fig_6 <- ggplot(Grad2_isna, 
+                  aes(x = Year)) + 
+  labs(title = "Figure 6: Proportion of in Humanities vs STEM Graduates, 
+       2005-2018", 
+       y = "Proportion in per cent",
+       caption = "N.B.: the sudden dip to 0 in Japan's data in 2014 is removed by transmuting the 0s to NAs.
+       Source: OECD, 'Education at a glance database' (2020)") +
+  geom_line(aes(y = Proportion_of_students_in_Hums, # Sets a line based on cumulative wage growth
+                colour = "Proportion \nof graduates \nfrom humantiess")) + 
+  geom_line(aes(y = Proportion_of_students_in_STEM, # sets a line based on cumulative GDP growth
+                colour = "Proportion \nof Graduates \nfrom STEM")) +
+  geom_line(aes(y = Diff_in_skill_sup, # sets a line based on cumulative GDP growth
+                colour = "Difference \nin skill supply")) +
+  geom_ribbon(aes(ymin = Proportion_of_students_in_Hums, 
+                   ymax = Proportion_of_students_in_STEM), #shades the area between the two lines to help highlight wage decoupling
+               fill="blue", 
+               alpha = 0.1) +
+  facet_wrap(Country ~ .)  +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 0),
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_6 
+```
+
+```{r Merge data 3}
+WD1 <- merge(x = WD1, 
+             y = Grad2_isna, 
+             by = c("Country", "Year"), 
+             all = T)
+```
+
+The second variable to calculate skill supply is the growth of graduates from all fields. This would indicate a consistent growth in the stock of human capital with high skills. This is done with the same dataset except we extrapolate absolute numbers rather than their share.
+
+```{r Setup for Figure 7}
+Edu <- read.csv("Data/EDU_GRAD_FIELD_07042021113535033.csv")
+
+Edu1 <- Edu %>% 
+  filter(Sex == "Total"
+         & Level.of.education %in% c("Short-cycle tertiary education (ISCED2011 level 5)", 
+                                   "Bachelorâ€™s or equivalent level (ISCED2011 level 6)", 
+                                   "Masterâ€™s or equivalent level (ISCED2011 level 7)", 
+                                   "Doctoral or equivalent level  (ISCED2011 level 8)")
+         & Category.of.education == "All educational programmes"
+         & Field %in% c("Information and Communication Technologies", 
+                        "Engineering, manufacturing and construction",
+                        "Total: All fields of education",
+                        "Arts and humanities",
+                        "Social sciences, journalism and information",
+                        "Natural sciences, mathematics and statistics",
+                        "Business, administration and law")
+         & Country %in% c(Countries)) %>% 
+  arrange(Country, Year) %>% # excludes data from before 1995
+  select(Country, Year, Field, Level.of.education, Value, Unit, 
+         Category.of.education, Country.of.origin) %>%
+  rename(Number_of_students = Value)
+
+Edu2 <- unique(Edu1) %>%
+  filter(Level.of.education == "Bachelorâ€™s or equivalent level (ISCED2011 level 6)"
+         & Category.of.education == "All educational programmes"
+         & Field == "Total: All fields of education"
+         & Country.of.origin == "World (all entities, including reference area, including IO)")
+Edu2 <- Edu2[!is.na(Edu2$Number_of_students), ]
+
+Edu1 <- Edu1[!is.na(Edu1$Number_of_students), ]
+
+Edu1Short <- Edu1 %>% 
+  filter(Level.of.education == "Short-cycle tertiary education (ISCED2011 level 5)"
+         & Field == "Total: All fields of education"
+         & Category.of.education == "All educational programmes"
+         & Country.of.origin == "World (all entities, including reference area, including IO)") %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Number_of_students) %>%
+  rename(Number_of_students_Short = Number_of_students)
+
+Edu1Bac <- Edu1 %>% 
+  filter(Level.of.education == "Bachelorâ€™s or equivalent level (ISCED2011 level 6)"
+         & Field == "Total: All fields of education"
+         & Category.of.education == "All educational programmes"
+         & Country.of.origin == "World (all entities, including reference area, including IO)") %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Number_of_students) %>%
+  rename(Number_of_students_Bac = Number_of_students)
+
+Edu1Mas <- Edu1 %>% 
+  filter(Level.of.education == "Masterâ€™s or equivalent level (ISCED2011 level 7)"
+         & Field == "Total: All fields of education"
+         & Category.of.education == "All educational programmes"
+         & Country.of.origin == "World (all entities, including reference area, including IO)") %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Number_of_students) %>%
+  rename(Number_of_students_Mas = Number_of_students)
+
+Edu1Doc <- Edu1 %>% 
+  filter(Level.of.education == "Doctoral or equivalent level  (ISCED2011 level 8)"
+         & Field == "Total: All fields of education"
+         & Category.of.education == "All educational programmes"
+         & Country.of.origin == "World (all entities, including reference area, including IO)") %>% 
+  arrange(Country, Year) %>%  
+  select(Country, Year, Number_of_students) %>%
+  rename(Number_of_students_Doc = Number_of_students)
+
+Edutot <- merge(x = Edu1Short, 
+                         y = Edu1Bac, 
+                         by = c("Country", "Year"))
+
+Edutot <- merge(x = Edutot, 
+                         y = Edu1Mas, 
+                         by = c("Country", "Year"))
+Edutot <- merge(x = Edutot, 
+                         y = Edu1Doc, 
+                         by = c("Country", "Year"))
+
+Edu3 <- Edutot %>% transmute(Edutot, Number_of_students_total = Number_of_students_Short + Number_of_students_Bac + Number_of_students_Mas + Number_of_students_Doc)
+
+Edu3 <-  Edu3 %>%
+  arrange(Country, Year) %>% # first sort by country then year
+  mutate(Diff_year = Year - lag(Year),  # Difference in time 
+         Diff_growth = Number_of_students_total - lag(Number_of_students_total), # Difference in route between years
+         Growth_student_enrollment = (Diff_growth/Diff_year)/lag(Number_of_students_total) * 100) # growth rate in percent
+
+Edu3 <-  within(Edu3, Number_of_students_total[Year == 1995] <- 0) %>%  # forces 1995 to be a base year where all countries start from 0
+  mutate_all(funs(ifelse(is.na(.), 0, .)))
+
+Edu3 <- Edu3 %>% select(c(Country, Year, Number_of_students_total, Growth_student_enrollment))
+```
+
+```{r Figure 7}
+Fig_7 <- ggplot(Edu3, 
+                 aes(x = Year, 
+                     y = Number_of_students_total/1000)) + 
+  labs(title = "Figure 7: Growth in number of graduates, 
+       2005-2018", 
+       y = "Growth in thousands",
+       caption = "Source: OECD, 'Education at a glance database' (2020)") +
+  geom_line(color = "red") + 
+  facet_wrap(Country ~ ., scales = "free_y")  +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 0),
+        plot.caption = element_text(hjust = 0, 
+                                    face = "italic"))
+
+Fig_7
+```
+
+```{r Merge data 4}
+WD1 <- merge(x = WD1, 
+             y = Edu3, 
+             by = c("Country", "Year"), 
+             all = T)
+```
+
+#### Interpretation
+Figures 6 and 7 are most important here. First, Figure 6 would indicate that countries with advanced manufacturing and mixed knowledge economies have lower differences in the proportions of the production of their STEM against humanities graduates compared to dynamic services knowledge economies. Additionally, there is little variance over time in the difference between the proportions of graduates but a downward trajectory is also demonstrated indicating a growing number of STEM skills in the stock of human capital. A wider conclusion is made by analyzing Figure 7 showing us a near-universal and constant growth in high skills. This gives credence to hypotheses 2 and 3 of this paper.
+
+## Counfounders
+With regards to the confounders, studies have identities a linked wage decoupling to trade union density, unemployment (Elgin, Umut, & Kuzubas 2013), social policy expenditure, the implementation of new technologies, and global trade (OECD, 2018). This model only takes two of these confounders into account: trade union density and social policy expenditure. This is because of their unique relationship with wage decoupling and skill demand and supply as they play roles in human capital formation providing funding and avenues for workers to learn new skills.
+
+The absence of unemployment and global trade is due to data availability. Including them would have shrunk the n of the model to levels this author is not comfortable with. The absence of technology is methodological, however. First, technology is correlated with skill demand and productivity increases. However, skill demand (or a lack thereof) is conversely correlated with productivity, so including technology would take away from the full effect that skill demand has on wage decoupling. Furthermore, the theoretical framework demonstrates that the skills supply influences the adoption of new technologies. This makes technology a collider. If we want to calculate the full effect of the skills mismatch on wage decoupling, we cannot control for a collider. Therefore, it will be left out as a controlled variable for this model.
+
+To calculate trade union density, I use the ‘Trade union density’ subset of the OECD’S ELMS database. “Density is calculated using survey data, wherever possible, and administrative data adjusted for non-active and self-employed members otherwise. Data are expressed in percentages and presented from 1980” (OECD 2019c).
+
+
+```{r Setup for Figure 8}
+TUD <- read.csv("Data/TUD_24052021140702712.csv")
+
+TUD1 <- TUD %>% 
+  filter(Source == "Administrative data"  # Select Growth rate
+         & Country %in% c(Countries)
+         & Unit == "Percentage"
+         & Year > 1994) %>% arrange(Country, Year) %>% # excludes data from before 1995
+  select(Country, Year, Source, Value) %>% 
+  rename(Trade_Union_Density = Value, Source_TUD = Source) %>%
+  na.omit()
+
+TUDUSA <- TUD %>% 
+  filter(Source == "Survey data"  # Select Growth rate
+         & Country == "United States"
+         & Unit == "Percentage"
+         & Year > 1994) %>% arrange(Country, Year) %>% # excludes data from before 1995
+  select(Country, Year, Source, Value) %>% 
+  rename(Trade_Union_Density = Value, Source_TUD = Source) %>%
+  na.omit()
+
+TUD1 <- merge(x = TUD1, y = TUDUSA, by = c("Country", "Year", 
+                                           "Trade_Union_Density", "Source_TUD"), 
+              all = T)
+```
+
+```{r Figure 8}
+Fig_8 <- ggplot(TUD1, 
+                aes(x = Year, 
+                    y = Trade_Union_Density)) + 
+  labs(title = "Figure 8: Trade Union Density, 
+       1995-2018", 
+       y = "Workers reporting membership in a trade union in per cent",
+       caption = "Nota bene: All countries have administrative data on trade union density, except for the US whose data are based 
+       on surveys. 
+       \nSource: OECD/AIAS, 'database on Institutional Characteristics of Trade Unions, Wage Setting, State Intervention and 
+       Social Pacts' (2021)") +
+  geom_line(color = "red") + 
+  facet_wrap(Country ~ ., 
+             scales = "free_y") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45),
+        legend.position = "none",
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_8
+```
+```{r Merge data 5}
+WD1 <- merge(x = WD1, 
+             y = TUD1, 
+             by = c("Country", "Year"), 
+             all = T)
+```
+
+Social policy expenditure is calculated using the OECD’s ‘Social Expenditure - Aggregated Data’ dataset, a subset of the ‘Social Protection and Wellbeing’ database. “It includes reliable and internationally comparable statistics on public and mandatory and voluntary private social expenditure at programme level […] The main social policy areas are as follows: Old age, Survivors, Incapacity-related benefits, Health, Family, Active labor market programmes, Unemployment, Housing, and Other social policy areas.” (OECD 2019b). In this case we take only public expenditure as a percentage of GDP.
+
+```{r Setup for Figure 9}
+SOCX <- read.csv("Data/SOCX_AGG_28052021125632392.csv")
+
+SOCX1 <- SOCX %>% 
+  filter(Source == "Public"  # Select Growth rate
+         & Country %in% c(Countries)
+         & Measure == "In percentage of Gross Domestic Product"
+         & Type.of.Expenditure == "Total"
+         & Type.of.Programme == "Total"
+         & Branch == "Total"
+         & Year > 1994
+         & Year < 2019) %>% arrange(Country, Year) %>% # excludes data from before 1995
+  select(Country, Year, Source, Value) %>% 
+  rename(SOCexp = Value) %>%
+  na.omit()
+```
+
+```{r Figure 9}
+Fig_9 <- ggplot(SOCX1, 
+                 aes(x = Year, 
+                     y = SOCexp)) + 
+  labs(title = "Figure 9: Public social policy expendiature as a percentage of GDP, 
+       1995-2018", 
+       y = "In per cent",
+       caption = "'Source: OECD, Social protection and wellbeing' (2021)") +
+  geom_line(color = "red") + 
+  facet_wrap(Country ~ ., 
+             scales = "free") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45),
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+Fig_9
+```
+
+```{r Merge data 6}
+WD1 <- merge(x = WD1, y = SOCX1, by = c("Country", "Year"), all = T)
+
+WD1 <- WD1 %>% select(-c(Source_TUD, Source, Proportion_of_students_Art, Proportion_of_students_Soc, Proportion_of_students_Bus, Proportion_of_students_Nat, Proportion_of_students_ICT, Proportion_of_students_Eng, Proportion_of_students_Edu, Proportion_of_students_Ser, Proportion_of_students_Hel))
+
+write.csv(WD1, file = "Data\\Wage_Decoupling_Final.csv", row.names = F)
+```
+
+#### Interpretation
+In Figure 8, a near-constant and universal decrease in trade union density can be seen, which would indicate losses in bargaining power for workers and solidarity, as argued in the ideology section of the literature review of this paper. This would affect wage decoupling as it suppresses wages and changes the dynamics of skill demand and supply. In Figure 9, we can see that public social policy spending varies between countries and tends to fluctuate. This also plays a dynamic in the skills mismatch as it is through social policies that some workers are retrained or taught new skills and that those with skills needed in other parts of their respective economies are made more mobile with more generous social policies. Finally, both figures have different values on their y-axis being a further indication of institutional differences between these countries. Some countries report higher trade union density than others and social policy expenditure varies, too. Some countries have rising expenditure, others falling, and some seem to fluctuate. 
+
+##  Case Selection and Qualitative Analysis 
+The case selection used in this study includes a wide range of countries chosen to facilitate the comparison of institutional contexts and their effects on wage decoupling. Additionally, countries that have adopted policies that are related to the fourth industrial revolution were also considered. A final factor that played a role in the country selection was the availability of data. This paper will not analyze all of them in-depth due to word count constraints. It will touch upon salient issues and approaches produced by second-hand literature in the form of OECD reports, EU reports, relevant academic literature and first-hand sources in the form of policies, such as Germany’s *National Skills Strategy* (2019) or *Smart Industry - a strategy for a new industrialisation for Sweden* (2016).
+
+Table 2 summarizes the selected countries' state type, their variety of knowledge economies, as described in the neo-institutionalism subsection of the theoretical framework, and their cumulative wage decoupling from 1995-2018. 
+
+```{r Setup for Table 2}
+State_type <- c("Liberal", "Bismarckian", "Bismarckian", "Nordic", "Bismarckian", "Bismarckian", "Bismarckian", "NULL", "Bismarckian", "Nordic", "Liberal", "Liberal")
+
+Knowledge_Economy <- c("Dynamic Services", "Advanced Manufacturing", "Dynamic Services", "Advanced Manufacturing", "Dynamic Services", "Advanced Manufacturing", "Mixed", "Advanced Manufacturing", "NULL", "Mixed", "Dynamic Services", "Dynamic Services")
+
+DF2 <- data.frame(Countries, State_type, Knowledge_Economy, cum_decoup)
+```
+
+```{r Table 2}
+DF2 %>%
+  kbl(caption = "Table 2: Countries, state, and knowledge economy typology",
+      col.names = c("Country", "State type", "Knowledge economy", "Cumulative decoupling")) %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  footnote(general = "own depiction based on Durazzi 2019; Häusermann & Schwander 2012; Palier 2010",
+           general_title = "Source: ", title_format = "italic") 
+```
+
+##  Analysis
+The analysis of this paper has two steps. The first is the interpretation of the results of the PLM models in Table 2. A PLM model has benefits as it solves issues with discrepancies in the data where the data for skill supply is limited and does not encompass the entire period desired in this study. The model automatically drops rows with NAs giving us only interpretations of the dataset where data are available. The second part is the qualitative interpretation of state institutions and how they influence the skills mismatch and wage decoupling. By interpreting recent policies related to the challenges of the fourth industrial revolution, and analyze institutional factors and policies that either mitigate or encourage wage decoupling and the skills mismatch we can extrapolate political implications for the distributional consequences of the fourth industrial revolution.
+
+```{r  Setup for Table 3}
+library(plm) # for the PLM. had to be loaded here otherwise the lag function would not work
+library(stargazer) # for nice tables
+
+WD <- read.csv("Data/Wage_Decoupling_Final.csv")
+
+lm1 <- plm(Decoupling_Rate ~ Rate_percent_jobs + Trade_Union_Density + SOCexp, WD)
+
+lm2a <- plm(Decoupling_Rate ~ Diff_in_skill_sup + Trade_Union_Density + SOCexp, WD)
+lm2b <- plm(Decoupling_Rate ~ Growth_student_enrollment + Trade_Union_Density + SOCexp, WD)
+
+
+lm3 <- plm(Decoupling_Rate ~ Rate_percent_jobs + Diff_in_skill_sup + Growth_student_enrollment + Trade_Union_Density + SOCexp, WD)
+
+```
+
+```{r Table 3, results="asis"}
+stargazer(lm1, lm2a, lm2b, lm3,
+          title = "Table 3: Summary Statistics",
+          type = 'html',
+          align = TRUE,
+          dep.var.labels = "Rate of wage decoupling",
+          column.labels = c("Skill demand", "Skill supply 1", "Skill supply 2", "Total"),
+          covariate.labels = c("Job vacancy growth rate", "Difference between skill supply groups", "Total tertiary graduate growth rate", "Trade Union Density", "Social policy expendiature"),
+          out = "table1.txt")
+```
+
+***
+#  Results & Discussion
+##  Does the skills mismatch cause wage decoupling?
+To determine whether the skills mismatch affects wage decoupling, I focus on the model results in Table 2. Looking at the results of the ‘skills demand’ and ‘Total’ models, we can see that the rise of skill demand has a statistically significant (p-value<0.01) and positive relationship with wage decoupling. This gives credence to hypothesis 1. Given the visualization of Figure 4, this is not surprising. We can infer that increases in potential wages to STEM workers are unaccounted for. Simultaneously the glut of humanities workers depresses wages in their respective sectors, as hypothesized by Beaudry, Green & Sand (2013).
+
+However, the models ‘Skill supply 1,’ ‘Skill supply 2’ and ‘Total’ would indicate that the increasing supply of high skill workers to the stock of human capital does not affect wage decoupling as the results are not statistically insignificant. This puts hypotheses 2 and 3 to rest and we can conclude that the demand side of the is the dominant aspect of the skills mismatch which is the demand side.
+
+##  Institutional Differences
+Tables 4 and 5 summarize the average values of our dependent and independent variables based on countries' institutional typologies.
+
+```{r Setup for Tables 4 and 5}
+G <- Grad2_isna %>%
+  group_by(Country) %>%
+  summarise_at(vars(Diff_in_skill_sup), 
+               list("Diff in skill sup" = mean)) %>%
+  select(-c(Country))
+G <- G[-c(13),]
+  
+E <- Edu3 %>%
+  group_by(Country) %>%
+  summarise_at(vars(Growth_student_enrollment), 
+               list("Growth in Skill Supply" = mean)) %>%
+  select(-c(Country))
+
+DF3 <- data.frame(Countries, State_type, Knowledge_Economy, cum_decoup, G, E)
+
+State_typeJ <- c("Liberal", "Bismarckian", "Bismarckian", "Nordic", "Bismarckian", "Bismarckian", "NULL", "Bismarckian", "Nordic", "Liberal", "Liberal")
+
+Knowledge_EconomyJ <- c("Dynamic Services", "Advanced Manufacturing", "Dynamic Services", "Advanced Manufacturing", "Dynamic Services", "Advanced Manufacturing", "Advanced Manufacturing", "NULL", "Mixed", "Dynamic Services", "Dynamic Services")
+
+J <- Job1 %>%
+  group_by(Country) %>%
+  summarise_at(vars(Rate_percent_jobs), 
+               list("Vacancy Growth" = mean))
+
+DFJ <- data.frame(J, State_typeJ, Knowledge_EconomyJ)
+
+St <- DF3 %>%
+  group_by(State_type) %>%
+  summarise_at(vars(Cumulative_decoupling), 
+               list("Average cumulative decoupling" = mean)) 
+StG <- DF3 %>%
+  group_by(State_type) %>%
+  summarise_at(vars(Diff.in.skill.sup), 
+               list("Diff_in_skill_sup" = mean))%>%
+  select(-c(State_type))
+StE <- DF3 %>%
+  group_by(State_type) %>%
+  summarise_at(vars(Growth.in.Skill.Supply), 
+               list("Average growth in skill supply" = mean))%>%
+  select(-c(State_type))
+StJ <- DFJ %>%
+  group_by(State_typeJ) %>%
+  summarise_at(vars(Vacancy.Growth), 
+               list("Average growth in vacancies" = mean))%>%
+  select(-c(State_typeJ))
+
+KE <- DF3 %>%
+  group_by(Knowledge_Economy) %>%
+  summarise_at(vars(Cumulative_decoupling), 
+               list("Average cumulative decoupling" = mean))
+KEG <- DF3 %>%
+  group_by(Knowledge_Economy) %>%
+  summarise_at(vars(Diff.in.skill.sup), 
+               list("Diff_in_skill_sup" = mean))%>%
+  select(-c(Knowledge_Economy))
+KEE <- DF3 %>%
+  group_by(Knowledge_Economy) %>%
+  summarise_at(vars(Growth.in.Skill.Supply), 
+               list("Average growth in skill supply" = mean))%>%
+  select(-c(Knowledge_Economy))
+KEJ <- DFJ %>%
+  group_by(Knowledge_EconomyJ) %>%
+  summarise_at(vars(Vacancy.Growth), 
+               list("Average growth in vacancies" = mean))%>%
+  select(-c(Knowledge_EconomyJ))
+
+DF4 <- data.frame(St, StG, StE, StJ)
+DF5 <- data.frame(KE, KEG, KEE, KEJ)
+```
+
+```{r Table 4}
+DF4 %>%
+  kbl(caption = "Table 4: State types and the skills mismatch",
+      col.names = c("State type", "Cumulative decoupling", "Average difference in skill supply", "Average growth in skill supply", "Average growth in vacancies")) %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  footnote(general = "own depiction based on Durazzi 2019; Häusermann & Schwander 2012; Palier 2010",
+           general_title = "Source: ", title_format = "italic") 
+```
+
+The first observation we make is in Table 4, where we see that liberal states demonstrate higher than average wage decoupling. While this is due in part to Australia’s high level of wage decoupling (see Figure 1) it is also in line with the literature. Liberal (as well as Bismarckian) states are more unequal (Thelen, 2012; (Emmenegger *et al.*, 2012) and the link between inequality and wage decoupling has also been established in the literature (Sharpe & Uguccioni, 2017). The average difference between graduates entering the workforce with humanities skills against STEM skills is also higher. On the contrary, their ability to produce more workers with high skills is low. A neo-institutionalist explanation of this would be the high barriers to tertiary education and educational segregation, given the high concentration of private education institutions in liberal states (Graf & Gardin, 2018; Allmendinger, 1989).
+
+Bismarckian and Nordic states have similar levels of wage decoupling to each other. The results from the Nordic states cannot be taken as representative, however, as only two countries in the dataset are classified as such. While Bismarckian states still produce more workers with humanities skills than STEM skills, it is nearly half the difference liberal states report. Nordic states, however, appear to be able to produce near equal of workers with both humanities and STEM skills. In Nordic states, social policy and education are intertwined and education considered a civil right. They are distinguished by higher than average OECD spending on education, vocational training is state-dominated and a prioritization of social equality (Graf & Gardin 2018). Bismarckian systems are conservative by nature (*Ibid.*). Their educational systems, as well as those of Nordic states, channel students towards their destined place in the labour market, decreasing the likelihood of job-shifts throughout their careers. In liberal states, however, in liberal systems, job-changes are expected to occur more frequently (Allmendinger, 1989). This configuration leads to workers to initially acquire general and academic skills in the education system and their training  thereafter, is primarily on-the-job training (Graf & Gardin, 2018). The barriers to education play a role here, too. While workers switch jobs more often, they are more likely to stay within their respective fields than change career paths as acquiring new skills is costly. In Bismarckian states, the expectation is such that workers stick to their jobs and the separation between education and social policy presents a further barrier to their education. In Nordic states, their focus on social equality and accessible education allows citizens the flexibility to enhance their skills in the way they best see fit (Regmi, 2015). As skills demand changes, the supply of these skills needs to change in turn. An analysis of the macro-institutional trends of these three state types would indicate that the Nordic states are best suited
+
+Research on labour market dualization also presents valuable insights for this analysis. In Bismarckian states labour market policy reforms are increasingly characterized by the insider-outsider divide. Insiders have maintained their status and employment protections while outsiders have been the primary targets of labour market deregulation (Barbieri & Cutuli, 2019; Odendahl, 2017). For example, Germany, a Bismarckian state, is more unequal than the OECD average and is growing more and more unequal at an above-average rate. (Goebel & Grabka, 2011). Highlighting this is the wage gap of 39.3% between insiders and outsiders (Häusermann & Schwander, 2012). When comparing insiders to outsiders, the accessibility gap to education is 5.2% which is statistically significant at the 0.001 alpha level according to Emmenegger *et al.* (2012). Antonia Kupfer (2010) analyzes this and finds that due to social inequality, it is mainly middle and upper-class German families that are gaining from the current institutional setup while the lower classes, immigrants and women are largely left behind. Moreover, One report demonstrates how Bismarckian states would have, on average, the most productivity gains if they could reduce this dimension of the skills mismatch (McGowan & Andrews, 2015). Considering the relationship between the high levels of dualization in Bismarckian states and how this can result in an on-the-job mismatch as insiders are insulated by employment protection resulting in underskilling. The conclusion here is to solve the on-the-job mismatch; an economy must lower its dualization. 
+
+```{r Table 5}
+DF5 %>%
+  kbl(caption = "Table 5: Knowledge economies and the skills mismatch",
+      col.names = c("Knowledge economy", "Cumulative decoupling", "Average difference in skill supply", "Average growth in skill supply", "Average growth in vacancies")) %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  footnote(general = "own depiction based on Durazzi 2019; Häusermann & Schwander 2012; Palier 2010",
+           general_title = "Source:", title_format = "italic") 
+```
+
+Table 5 we see advanced manufacturing knowledge economies have on average, relatively high levels of wage decoupling, despite the difference in their production of STEM against humanities graduates lower than that of dynamic services knowledge economies. Dynamic services knowledge economies report higher than average levels of decoupling and produce higher levels of workers with humanities skills than STEM skills, and this, we theorize, plays a part in the higher levels of decoupling. Because STEM employers necessitate workers with STEM skills, non-STEM employers need them too (Durazzi, 2019), and as the theoretical framework of this paper demonstrates, even in these countries, there is a skills shortage of STEM skills. These results would indicate that knowledge economies are institutions in themselves and consequently, from a neo-institutionalist perspective, direct and constrain the choices of agents. In this case, we can determine that relatively speaking, advanced manufacturing knowledge economies produce more STEM graduates than Dynamic services knowledge economies.
+
+Mixed economies, however, report the lowest levels of cumulative decoupling and difference in their high skill supply. This result is not representative as only two countries are registered as mixed knowledge economies in this dataset. One of these countries is, Sweden, has a unique institutional structure that is worthy of deeper analysis, however. Deindustrialization is a reality for many Swedish workers resulting in labour participation in manufacturing dropping roughly 40% since 1975 in nominal terms, while the service sector has grown with former manufacturers re-educating into STEM knowledge-intensive service roles such as those in biotechnology and information & communication technology (Lind, 2011; Schneider, 2007). However, Sweden’s economy adapted and had “intensified interaction [of the manufacturing sector with other economic sectors] particularly pronounced in relation to the service sector in general and its knowledge-intensive part in particular” (Lind, 2011, p. 41). This developed the need for, and subsequent creation of, STEM skills in the stock of human capital. This played a role in keeping the productivity of Sweden’s manufacturing industry high and its economy running. It is the country’s views on education that played a significant role in this. The future of employment is in these knowledge-intensive service roles, and active labour market policies supported by the government are critical drivers in ensuring improved living standards and a growing adapting internationally-tied economy. The key to Sweden’s relative success at hindering wage decoupling is its emphasis on accessibility to human capital investment to the civil right to it. This also ties into the fact that Sweden prioritized future job sectors through its state coordination. However, Sweden’s skill demand is the highest in this model. If anything, this should be a testament to the role that institutions and policies play in wage decoupling. A closer look at Figures 1 and 2 would also indicate that it was first in the final five years of the model that Sweden experienced explosive skill demand, and its wage decoupling followed suit.
+
+It is clear that new technologies are causing a structural transformation and this has heightened the need for a more dynamic skill supply focusing on general and transferable high skills. Sweden’s latest industrial strategy highlights this through its approach to skills bringing lifelong learning to the fore. Sweden’s *Smart industry - a strategy for new industrialisation for Sweden* states “Lifelong learning involves providing people at all stages of their lives with opportunities to improve their skills, retrain in order to change career or periodically return to university. Increased mobility between academia and industry is also important” (2016, p. 21). Sweden’s approach to universal education is well suited for this.
+
+Furthermore, research demonstrates that expenditure in continuing education and training in Nordic states is predominantly financed through the state, Bismarckian states rely on the employer to finance it while liberal states rely on individual investments (OECD, 2021a). Bismarckian states adopt different approaches because of their institutional contexts. Germany’s national skills strategy, for example, aims to get all its stakeholders to work together to provide workers, job seekers, and companies the opportunity to shape the changing world of work. The policy streamlines the skills programs at the federal and state levels, hoping to align them with the labour market dynamics on both the supply and demand sides. The hope is that this establishes a new culture of lifelong learning (NWS, 2019). the government is valuing general and transferable skills, hoping to establish a culture of lifelong learning. It provides impetus to employers to not only focus on the development of specific skills but general skills too so that the labour market is prepared to overcome the structural change. Another approach by France incentivizes company investments in worker up- and re-skilling by providing businesses tax credit equal to the number of training hours multiplied by the minimum wage (Fitzpayne & Pollack, 2018). Here we can see that Bismarckian states are reinforcing the traditional means of continuing education, in an attempt to get employers to make their employees more employable in the transforming labour market.
+
+These results and analysis of the institutional structures of different countries would confirm the fourth hypothesis of this paper that institutional contexts play a role in the dynamics of wage decoupling and the skills mismatch. We can demonstrate a country’s state type, variety of knowledge economy and the labour market dualization appear to affect how the degree to which they are effected by wage decoupling, the structure of their skills mismatch and what approaches they take to overcome it.
+
+***
+
+#  Conclusion
+This paper closes with a short conclusion showing the main findings, policy implications and the model's limitations and suggestions for future research. The study aimed to establish a link between the skills mismatch and wage decoupling from a neo-institutionalist perspective. Research into the wage decoupling has focused on the direct role of technology and globalization or the role of labour market institutions and ontological structures. These studies are often functionalist in nature, demonstrating that policies are inadequate and reforms are necessary to mitigate wage decoupling. This paper offers a neo-institutionalist perspective on the issue by highlighting the institutional aspects that create the skills mismatch and, consequently, wage decoupling. Having determined that there is a genre of skills, namely STEM skills, that are in severe demand in most knowledge economies, this paper offers some novel interpretations of the skills mismatch in how high skills can be defined, specifically a dualized typology of high skills based on what sector of the economy they are destined for. This view of high skills provides nuance to studying the skills mismatch. Furthermore, it takes Durazzi’s varieties of knowledge economies typology and adds a third term: mixed knowledge economies where advanced manufacturing and dynamic services play important roles.
+
+The main findings demonstrate that the demand side of the skills mismatch is positively correlated with wage decoupling. From the same neo-institutional perspective, I demonstrate the role institutions play in mitigating or exacerbating wage decoupling and the skills mismatch. Bismarckian, Liberal and Nordic states demonstrate different approaches to continued learning. Furthermore, their rates of decoupling and output of skill supply differ accordingly. Liberal states demonstrate high levels of humanities graduates compared to STEM graduates, the difference in Bismarckian states is narrower while the difference in nordic states is narrower still. Liberal states demonstrate higher than average levels of wage decoupling while Bismarckian states demonstrate levels closer to the average. When analyzing the differences presented by the varieties of knowledge economies, we can see that they play institutional roles in themselves directing future workers towards specific fields of education. Moreover, the average decoupling in both advanced manufacturing and dynamic services knowledge economies are comparatively high, indicating, as predicted based on the results of the quantitative model, that STEM skills are in demand regardless of the knowledge economy.
+
+##  Policy Implications
+This paper shows that skills demand is a driving factor in wage decoupling and the logical policy response would be to raise the skill supply. It is not the only solution to wage decoupling, but it is the focus of this paper. This paper provides a more nuanced view of this, however, demonstrating that it is STEM skills that are in severe need and policymakers should focus on this. The qualitative analysis of this paper demonstrates that skill supply is severely lagging. Education is losing its metaphorical race to technology.
+
+Faced with a structural change of the labour market and the skills mismatch quandary governments have undertaken measures to encourage lifelong learning to prepare the labour market for this structural transformation where skill demands are constantly changing. The Nordic states’ focus on state-financed further education and its perception as a universal right uniquely situate it in a good position to minimize its skill mismatch. This coupled with the robust labour market institutions, allows them to better tackle wage decoupling than Bismarckian or Liberal states. Bismarckian states, however, do not have this institutional legacy and instead, their history of employer-sponsored continued education and training means that the governments are finding ways to incentivize employers to provide the training of general skills that would better prepare employees to better respond to the demands of the structural transformation. Only time will tell if either or have a true impact on the skills mismatch and wage decoupling.
+
+
+## Limitations, challenges and future research
+The challenges of this paper primarily came in the form of data limitations. Ideally, the data on the proportion of graduates in different educational fields would have been more complete to analyze better the supply-side effects of the skills mismatch. Similarly, the data on job vacancies with concrete numbers of vacancies in specific economic sectors could have been more concrete to analyze better the composition of the skills demand and skills shortage. What this paper failed to do due to data limitations may be mended with time. In 2015 the OECD started a measure of the skills mismatch database but has not updated it since 2016 (OECD, 2017). With time, this could prove a valuable resource to better analyze the relationship between the skills mismatch and wage decoupling. Furthermore, the novel nuances provided in the form of the high skills dichotomy and addition to the varieties of knowledge economies typology provide avenues for further research in wage decoupling based on the skills mismatch.
+
+***
+
+#  Bibliogrpahy
+
+Acemoglu, D., & Autor, D. (2012). What Does Human Capital Do? A Review of Goldin and Katz’s The Race between Education and Technology. *Journal of Economic Literature*, 50(2), 426–463. https://doi.org/10.1257/jel.50.2.426
+
+Acemoglu, D., & Restrepo, P. (2018). Artificial Intelligence, Automation and Work. *National Bureau of Economic Research*, 43.
+
+Andrews, D., Criscuolo, C., & Gal, P. N. (2016). The Best versus the Rest: The Global Productivity Slowdown, Divergence across Firms and the Role of Public Policy. *OECD Publishing*, 5. https://doi.org/10.1787/63629cc9-en
+
+Andrews, D., & McGowan, M. A. (2015). Skill Mismatch-and-Public-Policy-in-OECD-Countries. *OECD Publishing*, 1210.
+
+Baker, D. (2014). *Schooled Society: The Educational Transformation of Global Culture*. Stanford University Press.
+
+Barbieri, P., & Cutuli, G. (2019). Italy: Labour market dualization and the rise of inequality. A panel analysis of the impact of labour market deregulation on unemployment and the diffusion of temporary employment, between 1997 and 2014. *Università Di Trento*, 4. https://lavoroimpresawelfare.files.wordpress.com/2019/06/liw_wp4.pdf
+
+Beaudry, P., Green, D. A., & Sand, B. M. (2013). *The Great Reversal in the Demand for Skill and Cognitive Tasks* (No. w18901). *National Bureau of Economic Research*. https://doi.org/10.3386/w18901
+
+Becker, G. S. (1964). *Human Capital: A Theoretical and Empirical Analysis, with Special Reference to Education*, 3rd Edition (3rd ed.). University of Chicago Press.
+
+Beckmann, T., Likaj, X., Steimer, P., & Stöckel, M. (2020). Precarisation, Individualisation and the Development of Trade Unions in Germany. *Institute for International Political Economy Berlin*, 130. https://www.ipe-berlin.org/fileadmin/institut-ipe/Dokumente/Working_Papers/ipe_working_paper_130.pdf
+
+Berlingieri, G., Blanchenay, P., & Criscuolo, C. (2017). The great divergence(s). *OECD Science, Technology and Innovation Policy Papers*, 39.  https://doi.org/10.1787/953f3853-en
+
+Bhambhri, C. P. (2021). Functionalism in Politics. *The Indian Journal of Political Science*, 34(4), 455–470.
+
+Bivens, J., & Mishel, L. (2015). *Understanding the Historic Divergence Between Productivity and a Typical Worker’s Pay: Why It Matters and Why It’s Real* (Breifing Paper No. 406). https://www.epi.org/publication/understanding-the-historic-divergence-between-productivity-and-a-typical-workers-pay-why-it-matters-and-why-its-real/
+
+Breuning, M., Ishiyama, J., & Rafferty, J. (2011). Neoinstitutionalism | social science. In *Encyclopedia Britannica*. Encyclopedia Britannica. https://www.britannica.com/topic/neoinstitutionalism
+
+Briggs, S. (2006). An exploratory study of the factors influencing undergraduate student choice: The case of higher education in Scotland. *Studies in Higher Education*, 31(6), 705–722. https://doi.org/10.1080/03075070601004333
+
+Brynjolfsson, E., & McAfee, A. (2016). *The Second Machine Age: Work, Progress, and Prosperity in a Time of Brilliant Technologies*. W. W. Norton & Company.
+
+Bundesministerium für Arbeit und Soziales, & Bundesministerium für Bildung und Forschung. (2019). *Strategiepapier Nationale Weiterbildungsstrategie*. Bundesministerium für Arbeit und Soziales und das Bundesministerium für Bildung und Forschung. https://www.bmas.de/EN/Our-Topics/Initial-and-Continuing-Training/national-skills-strategy.html
+
+Carluccio, J., Fougère, D., & Gautier, E. (2015). Trade, Wages and Collective Bargaining: Evidence from France. *The Economic Journal*, 125(584), 803–837. https://doi.org/10.1111/ecoj.12262
+
+CEDEFOP. (2015). *Skills, qualifications and jobs in the EU: The making of a perfect match?: evidence from Cedefop’s European skills and jobs survey*. Publications Office of the European Union. https://data.europa.eu/doi/10.2801/606129
+
+Durazzi, N. (2019). The political economy of high skills: Higher education in knowledge-based labour markets. *Journal of European Public Policy*, 26(12), 1799–1817. https://doi.org/10.1080/13501763.2018.1551415
+
+Dwyer & Wright. (2019). Low-Wage Job Growth, Polarization, and the Limits and Opportunities of the Service Economy. *RSF: The Russell Sage Foundation Journal of the Social Sciences*, 5(4), 56. https://doi.org/10.7758/rsf.2019.5.4.02
+
+Elgin, C., & Kuzubas, T. U. (2013). Wage-Productivity Gap in OECD Economies. Economics: The Open-Access, *Open-Assessment E-Journal*, 7(2013–21), 1. https://doi.org/10.5018/economics-ejournal.ja.2013-21
+
+Emmenegger, P., Häusermann, S., Palier, B., & Seeleib-Kaiser, M. (2012). How We Grow Unequal. In P. Emmenegger, S. Häusermann, B. Palier, & M. Seeleib-Kaiser (Eds.), *The age of dualization: The changing face of inequality in deindustrializing societies*. Oxford University Press.
+
+Esping-Andersen, G. (1999). *Social Foundations Of Postindustrial Economies*. Oxford University Press.
+
+Faggio, G., Salvanes, K., & Van Reenen, J. (2010). The evolution of inequality in productivity and wages: Panel data evidence. *Industrial and Corporate Change*, 19(6), 1919–1951. https://doi.org/10.1093/icc/dtq058
+
+Ford, M. (2016). *Rise of the Robots: Technology and the Threat of a Jobless Future* (Illustrated Edition). Basic Books.
+
+Fraser, S. (2015). *The Age of Acquiescence: The Life and Death of American Resistance to Organized Wealth and Power* (First Edition). Little, Brown and Company.
+
+Galgoczi, B. (2018, June 23). The gap between wages and productivity. *EUROPP*. https://blogs.lse.ac.uk/europpblog/2018/06/23/the-gap-between-wages-and-productivity/
+
+Goldin, C., & Katz, L. F. (2008). *The Race between Education and Technology*. The Belknap Press.
+
+Graf, L., & Gardin, M. (2018). Transnational skills development in post-industrial knowledge economies: The case of Luxembourg and the Greater Region. *Journal of Education and Work*, 31(1), 1–15. https://doi.org/10.1080/13639080.2017.1408954
+
+Haipeter, T. (2019). *Interessenvertretung in der Industrie 4.0*. Nomos Verlagsgesellschaft mbH & Co. KG. https://doi.org/10.5771/9783845295770
+
+Hall, P. A., & Soskice, D. W. (2001). *Varieties of Capitalism*. Oxford University Press.
+
+Häusermann, S., & Schwander, H. (2012). Varieties of Dualization? Labor Market Segmentation and Insider-Outsider Divides Across Regimes. In P. Emmenegger, S. Häusermann, B. Palier, & M. Seeleib-Kaiser (Eds.), *The age of dualization: The changing face of inequality in deindustrializing societies* (pp. 27–49). Oxford University Press.
+
+Haynes, L. (2008). Studying Stem: What are the barriers? *Stevenage: The Institution of Engineering and Technology*, 18.
+
+Karabarbounis, L., & Neiman, B. (2014). The Global Decline of the Labor Share*. The Quarterly Journal of Economics, 129(1), 61–103. https://doi.org/10.1093/qje/qjt032
+
+Kouhizadeh, M., Saberi, S., & Sarkis, J. (2021). Blockchain technology and the sustainable supply chain: Theoretically exploring adoption barriers. *International Journal of Production Economics*, 231. https://doi.org/10.1016/j.ijpe.2020.107831
+
+Lazear, E. P. (2009). Firm‐Specific Human Capital: A Skill‐Weights Approach. *Journal of Political Economy*, 117(5), 914–940. https://doi.org/10.1086/648671
+
+Lind, D. (2011). The Myths and Reality of Deindustrialization in Sweden: The Role of Productivity. *International Productivity Monitor*, 22, 29–43.
+
+Lundahl, L. (2016). Equality, inclusion and marketization of Nordic education: Introductory notes: *Research in Comparative and International Education*. https://doi.org/10.1177/1745499916631059
+
+McGarth, J. (2020). *Analysis of shortage and surplus occupations 2020*. Publications Office of the European Union. https://data.europa.eu/doi/10.2765/954687
+
+Odendahl, C. (2017, September 12). Germany After the Hartz Reforms. *Foreign Affairs*. https://www.foreignaffairs.com/articles/germany/2017-09-11/germany-after-hartz-reforms
+
+OECD. (2017). OECD Employment Outlook 2017. *OECD Publishing*. https://doi.org/10.1787/empl_outlook-2017-en
+
+OECD. (2018). Decoupling of wages from productivity: What implications for public policies? In OECD, OECD Economic Outlook, Volume 2018 Issue 2, *OECD Publishing*, (pp. 51–65). OECD. https://doi.org/10.1787/eco_outlook-v2018-2-3-en
+
+OECD. (2019a). Average annual wages. https://www.oecd-ilibrary.org/social-issues-migration-health/data/oecd-employment-and-labour-market-statistics/average-annual-wages_data-00571-en
+
+OECD. (2019b). Social Expenditure—Aggregated data. https://stats.oecd.org/Index.aspx?datasetcode=SOCX_AGG#
+
+OECD. (2019c). Trade union density [Text]. http://instance.metastore.ingenta.com/content/collection/lfs-data-en
+
+OECD. (2020a). Distribution of graduates and entrants by Field. https://doi.org/10.1787/f8d7880d-en
+
+OECD. (2020b). Graduates by field. https://stats.oecd.org/Index.aspx?DataSetCode=EDU_GRAD_FIELD
+
+OECD. (2021a). Continuing Education and Training in Germany. *OECD Publishing*. https://doi.org/10.1787/1f552468-en
+
+OECD. (2021b). Gross domestic product [Text]. http://instance.metastore.ingenta.com/content/collection/na-data-en
+
+OECD. (2021c). Short-Term Labour Market Statistics. https://stats.oecd.org/viewhtml.aspx?datasetcode=STLABOUR&lang=en
+
+Palier, B. (2010). The Dualizations of the French Welfare System. In B. Palier (Ed.), *A Long Goodbye to Bismarck?: The Politics of Welfare Reform in Continental Europe*. Amsterdam University Press.
+
+Pistono, F. (2012). *Robots Will Steal Your Job, But That’s OK: How to survive the economic collapse and be happy*. CreateSpace Independent Publishing Platform.
+
+Reay, D., Davies, J., David, M., & Ball, S. J. (2001). Choices of Degree or Degrees of Choice? Class, `Race’ and the Higher Education Choice Process. *Sociology*, 35(4), 855–874. https://doi.org/10.1177/0038038501035004004
+
+Regmi, K. D. (2015). Lifelong learning: Foundational models, underlying assumptions and critiques. International Review of Education, 61(2), 133–151. https://doi.org/10.1007/s11159-015-9480-2
+
+Rueda, D., Wibbels, E., & Altamirano, M. (2015). The Origins of Dualism. In *The Politics of Advanced Capitalism* (pp. 89–111). Cambridge University Press.
+
+Schneemelcher, P., & Ständer, P. (2018, July 2). *Wage Productivity Gap: Four Tales from the Eurozone* [Jacques Delors Institut Berlin]. https://www.delorscentre.eu/en/publications/detail/publication/wage-productivity-gap-four-tales-from-the-eurozone/
+
+Schneider, G. E. (2007). Sweden’s Economic Recovery and the Theory of Comparative Institutional Advantage. *Journal of Economic Issues*, 41(2), 417–426.
+
+Schröder, M. (2009). Integrating Welfare and Production Typologies: How Refinements of the Varieties of Capitalism Approach call for a Combination of Welfare Typologies. *Journal of Social Policy*, 38(1), 19–43. https://doi.org/10.1017/S0047279408002535
+
+Schröder, M. (2013). *Integrating Varieties of Capitalism and Welfare State Research: A Unified Typology of Capitalisms*. Palgrave Macmillan.
+
+Schwab, K. (2016). *The Fourth Industrial Revolution*. World Economic Forum.
+
+Schwellnus, C., Kappeler, A., & Pionnier, P.-A. (2017a). The Decoupling of Median Wages from Productivity in OECD Countries. *International Productivity Monitor, Centre for the Study of Living Standards*, 32, 44–60.
+
+Schwellnus, C., Kappeler, A., & Pionnier, P.-A. (2017b). *Decoupling of wages from productivity: Macro-level facts* (OECD Economics Department Working Papers No. 1373; OECD Economics Department Working Papers, Vol. 1373). OECD Publishing. https://doi.org/10.1787/d4764493-en
+
+Schwellnus, C., Pak, M., Pionnier, P.-A., & Crivellaro, E. (2018). *Labour share developments over the past two decades: The role of technological progress, globalisation and “winner-takes-most” dynamics* (Economics Department Working Papers No. 1503). OECD Publishing. https://www.oecd-ilibrary.org/economics/labour-share-developments-over-the-past-two-decades_3eb9f9ed-en
+
+Sharpe, A., & Uguccioni, J. (2017). Decomposing the Productivity-Wage Nexus in Selected OECD Countries, 1986-2013. *International Productivity Monitor*, 32, 25–43.
+
+Škare, M., & Škare, D. (2017). Is the great decoupling real? *Journal of Business Economics and Management*, 18(3), 451–467. https://doi.org/10.3846/16111699.2017.1323793
+
+*Skill shortages in Europe: Which occupations are in demand – and why*. (2016, October 25). Cedefop. https://www.cedefop.europa.eu/en/news-and-press/news/skill-shortages-europe-which-occupations-are-demand-and-why
+
+Sumner, S. (2019, February 27). The wage decoupling mess. *The Library of Economics and Liberty*. https://www.econlib.org/the-wage-decoupling-mess/
+
+Swedish Ministry of Enterprise and Innovation. (2016). *Smart industry – a strategy for new industrialisation for Sweden* (N2016.06). Swedish Ministry of Enterprise and Innovation. https://www.government.se/498615/contentassets/3be3b6421c034b038dae4a7ad75f2f54/nist_statsformat_160420_eng_webb.pdf
+
+Vandeplas, A., & Thum-Thysen. (2019). *Skills mismatch & productivity in the EU*. Publications Office  of the European Union. https://data.europa.eu/doi/10.2765/954687
+
+WEF. (2020). *WEF Future of Jobs Report 2020*. World Economic Forum. http://www3.weforum.org/docs/WEF_Future_of_Jobs_2020.pdf
+
+
